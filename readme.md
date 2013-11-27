@@ -43,6 +43,7 @@ button.on('click', function ( data ) {
 });
 ```
 
+
 ## <a name='modules'>Modules</a>
 
 Use [CommonJS](http://wiki.commonjs.org/wiki/Modules) modules.
@@ -56,6 +57,7 @@ Every commit message, pull request title or issue discussion must be in English.
 
 Don't use Past or Present Continuous tenses for commit messages, those should be in Imperative Present tense.
 > This preference comes from [Git itself](http://git.kernel.org/cgit/git/git.git/tree/Documentation/SubmittingPatches?id=HEAD#n111).
+
 ```javascript
 // Bad
 Added feature X

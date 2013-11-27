@@ -30,7 +30,7 @@ It is inspired by what is popular within the community, and flavored with some p
 ## <a name='objects'>Objects</a>
 
 Use the literal syntax for object creation.
-> Both ways do the same thing, but literal notation takes less space. It's clearly recognizable as to what is happening, so using new object(), is really just typing more.
+> Both ways do the same thing, but literal notation takes less space. It's clearly recognizable as to what is happening, so using `new object()`, is really just typing more.
 
 ```javascript
 // bad
@@ -81,7 +81,7 @@ var superman = {
 ## <a name='arrays'>Arrays</a>
 
 Use the literal syntax for array creation.
-> new Array(len) creates an array with len holes. On some JavaScript engines, this operation lets you pre-allocate arrays, giving you performance benefits for small arrays (not for large ones). In most cases, performance doesn’t matter and you can avoid the redundancy introduced by a preallocation. If it fits the problem, an array literal initializing all elements at once is preferable.
+> `new Array(len)` creates an array with len holes. On some JavaScript engines, this operation lets you pre-allocate arrays, giving you performance benefits for small arrays (not for large ones). In most cases, performance doesn’t matter and you can avoid the redundancy introduced by a preallocation. If it fits the problem, an array literal initializing all elements at once is preferable.
 
 ```javascript
 // bad

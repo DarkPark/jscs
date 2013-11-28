@@ -43,7 +43,7 @@ var item = {};
 ```
 
 Don't use [reserved words](http://es5.github.io/#x7.6.1) as keys.
-> It won't work in IE8. [More info](https://github.com/airbnb/javascript/issues/61)
+> It won't work in IE8. [More info](https://github.com/airbnb/javascript/issues/61).
 
 ```javascript
 // bad
@@ -123,92 +123,54 @@ function trigger() {
 
 ## <a name='strings'>Strings</a>
 
-- Use single quotes `''` for strings
+Use single quotes `''` for strings.
+> The difference between single and double quotes is that you don't need to escape single quotes in double quotes, or double quotes in single quotes. That is the only difference, if you do not count the fact that you must hold the Shift key to type `"`.
 
 ```javascript
 // bad
-var name = "Bob Parr";
-
-// good
-var name = 'Bob Parr';
-
-// bad
-var fullName = "Bob " + this.lastName;
-
-// good
-var fullName = 'Bob ' + this.lastName;
+var name = "Bob Parr",
+    fullName = "Bob " + this.lastName;
 ```
 
-- Strings longer than 80 characters should be written across multiple lines using string concatenation.
-- Note: If overused, long strings with concatenation could impact performance. [jsPerf](http://jsperf.com/ya-string-concat) & [Discussion](https://github.com/airbnb/javascript/issues/40)
-
 ```javascript
-// bad
-var errorMessage = 'This is a super long error that was thrown because of Batman. When you stop to think about how Batman had anything to do with this, you would get nowhere fast.';
-
-// bad
-var errorMessage = 'This is a super long error that \
-was thrown because of Batman. \
-When you stop to think about \
-how Batman had anything to do \
-with this, you would get nowhere \
-fast.';
-
-
 // good
-var errorMessage = 'This is a super long error that ' +
-  'was thrown because of Batman. ' +
-  'When you stop to think about ' +
-  'how Batman had anything to do ' +
-  'with this, you would get nowhere ' +
-  'fast.';
+var name = 'Bob Parr',
+    fullName = 'Bob ' + this.lastName;
 ```
 
-- When programatically building up a string, use Array#join instead of string concatenation. Mostly for IE: [jsPerf](http://jsperf.com/string-vs-array-concat/2).
+Strings longer than 100 characters should be written across multiple lines using string concatenation.
+> In general use of such long lines should be avoided. If overused, long strings with concatenation could impact performance.
+> [jsPerf](http://jsperf.com/ya-string-concat) & [Discussion](https://github.com/airbnb/javascript/issues/40).
 
 ```javascript
-var items,
-	messages,
-	length,
-	i;
+// good
+var errorMessage = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, \
+sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.';
 
-messages = [{
-	state: 'success',
-	message: 'This one worked.'
-},{
-	state: 'success',
-	message: 'This one worked as well.'
-},{
-	state: 'error',
-	message: 'This one did not work.'
-}];
+// also good
+var errorMessage = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, ' +
+'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ' +
+'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.';
+```
 
-length = messages.length;
+When programatically building up complicated strings, use [Array.join](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join). String concatenation is good for simple cases.
+> Modern browsers are optimized to do string concatenations so performance is not an issue anymore. [jsPerf](http://stackoverflow.com/questions/7299010/why-is-string-concatenation-faster-than-array-join).
 
-// bad
-function inbox(messages) {
-  items = '<ul>';
-
-  for (i = 0; i < length; i++) {
-	items += '<li>' + messages[i].message + '</li>';
-  }
-
-  return items + '</ul>';
+```javascript
+// good
+var i, str = "";
+for ( i = 30000; i > 0; i-- ) {
+	str += 'String concatenation. ';
 }
 
-// good
-function inbox(messages) {
-  items = [];
-
-  for (i = 0; i < length; i++) {
-	items[i] = messages[i].message;
-  }
-
-  return '<ul><li>' + items.join('</li><li>') + '</li></ul>';
+// also good
+var i, str = '', sArr = [];
+for ( i = 30000; i > 0; i-- ) {
+	sArr[i] = "String concatenation.";
 }
+str = sArr.join(' ');
 ```
-
-**[[⬆]](#TOC)**
 
 
 ## <a name='functions'>Functions</a>

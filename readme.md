@@ -43,7 +43,7 @@ var item = {};
 ```
 
 Don't use [reserved words](http://es5.github.io/#x7.6.1) as keys.
-> It won't work in IE8. [More info](https://github.com/airbnb/javascript/issues/61).
+> It won't work in [IE8](https://github.com/airbnb/javascript/issues/61).
 
 ```javascript
 // bad
@@ -155,7 +155,7 @@ var errorMessage = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, ' 
 ```
 
 When programatically building up complicated strings, use [Array.join](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join). String concatenation is good for simple cases.
-> Modern browsers are optimized to do string concatenations so performance is not an issue anymore. [jsPerf](http://stackoverflow.com/questions/7299010/why-is-string-concatenation-faster-than-array-join).
+> Modern browsers are optimized to do string concatenations so performance is [not an issue](http://stackoverflow.com/questions/7299010/why-is-string-concatenation-faster-than-array-join) anymore.
 
 ```javascript
 // good
@@ -167,7 +167,7 @@ for ( i = 30000; i > 0; i-- ) {
 // also good
 var i, str = '', sArr = [];
 for ( i = 30000; i > 0; i-- ) {
-	sArr[i] = "String concatenation.";
+	sArr.push('String concatenation.');
 }
 str = sArr.join(' ');
 ```
@@ -175,61 +175,59 @@ str = sArr.join(' ');
 
 ## <a name='functions'>Functions</a>
 
-- Function expressions:
+Function expressions:
 
 ```javascript
 // anonymous function expression
 var anonymous = function() {
-  return true;
+    return true;
 };
 
 // named function expression
 var named = function named() {
-  return true;
+    return true;
 };
 
 // immediately-invoked function expression (IIFE)
 (function() {
-  console.log('Welcome to the Internet. Please follow me.');
+    return true;
 })();
 ```
 
-- Never declare a function in a non-function block (if, while, etc). Assign the function to a variable instead. Browsers will allow you to do it, but they all interpret it differently, which is bad news bears.
-- **Note:** ECMA-262 defines a `block` as a list of statements. A function declaration is not a statement. [Read ECMA-262's note on this issue](http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=97).
+Never declare a function in a non-function block (if, while, etc).
+> Assign the function to a variable instead. Browsers will allow you to do it, but they all interpret it differently.
 
 ```javascript
 // bad
-if (currentUser) {
-  function test() {
-	console.log('Nope.');
-  }
+if ( currentUser ) {
+    function test () {
+        console.log('Nope.');
+    }
 }
 
 // good
 var test;
-if (currentUser) {
-  test = function test() {
-	console.log('Yup.');
-  };
+if ( currentUser ) {
+    test = function test () {
+        console.log('Yup.');
+    };
 }
 ```
 
-- Never name a parameter `arguments`, this will take precedence over the `arguments` object that is given to every function scope.
+Never name a parameter `arguments`.
+> This will take precedence over the `arguments` object that is given to every function scope.
 
 ```javascript
 // bad
-function nope(name, options, arguments) {
-  // ...stuff...
+function nope ( name, options, arguments ) {
+    ...
 }
 
 // good
-function yup(name, options, args) {
-  // ...stuff...
+function yup ( name, options, args ) {
+    ...
 }
 ```
-
-**[[⬆]](#TOC)**
-
 
 
 ## <a name='properties'>Properties</a>

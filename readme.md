@@ -232,37 +232,40 @@ function yup ( name, options, args ) {
 
 ## <a name='properties'>Properties</a>
 
-- Use dot notation when accessing properties.
+Use dot notation when accessing properties wherever possible.
+> Dot notation is faster to write and clearer to read.
+> Square bracket notation allows access to properties containing special characters and selection of properties using variables.
 
 ```javascript
-var luke = {
-  jedi: true,
-  age: 28
-};
-
 // bad
-var isJedi = luke['jedi'];
-
-// good
-var isJedi = luke.jedi;
+var data = items['pear'];
 ```
-
-- Use subscript notation `[]` when accessing properties with a variable.
 
 ```javascript
-var luke = {
-  jedi: true,
-  age: 28
-};
+// good
+var data = items.pear;
 
-function getProp(prop) {
-  return luke[prop];
-}
-
-var isJedi = getProp('jedi');
+// also good
+var name = 'pear',
+    data = items[name];
 ```
 
-**[[⬆]](#TOC)**
+Delete properties with assigning to `null`.
+> In modern JavaScript engines, changing the number of properties on an object is much slower than reassigning the values. The delete keyword should be avoided except when it is necessary to remove a property from an object's iterated list of keys, or to change the result of `if ( key in obj )`.
+
+```javascript
+// bad
+Foo.prototype.dispose = function () {
+    delete this.someProperty;
+};
+```
+
+```javascript
+// good
+Foo.prototype.dispose = function () {
+    this.someProperty = null;
+};
+```
 
 
 ## <a name='variables'>Variables</a>

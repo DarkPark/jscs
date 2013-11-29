@@ -254,14 +254,14 @@ Delete properties with assigning to `null`.
 > In modern JavaScript engines, changing the number of properties on an object is much slower than reassigning the values. The delete keyword should be avoided except when it is necessary to remove a property from an object's iterated list of keys, or to change the result of `if ( key in obj )`.
 
 ```javascript
-// bad
+// think twice
 Foo.prototype.dispose = function () {
     delete this.someProperty;
 };
 ```
 
 ```javascript
-// good
+// good in most cases
 Foo.prototype.dispose = function () {
     this.someProperty = null;
 };
@@ -270,111 +270,136 @@ Foo.prototype.dispose = function () {
 
 ## <a name='variables'>Variables</a>
 
-- Always use `var` to declare variables. Not doing so will result in global variables. We want to avoid polluting the global namespace. Captain Planet warned us of that.
+Always use `var` to declare variables.
+> Not doing so will result in global variables. We want to avoid polluting the global namespace.
 
 ```javascript
 // bad
 superPower = new SuperPower();
+```
 
+```javascript
 // good
 var superPower = new SuperPower();
 ```
 
-- Use one `var` declaration for multiple variables and declare each variable on a newline.
+Use one `var` declaration for multiple variables.  
+There should be only one `var` block for each scope.
 
 ```javascript
 // bad
-var items = getItems();
-var goSportsTeam = true;
-var dragonball = 'z';
-
-// good
-var items = getItems(),
-	goSportsTeam = true,
-	dragonball = 'z';
+var items   = getItems();
+var isFresh = true;
+var topHtml = 'z';
 ```
 
-- Declare unassigned variables last. This is helpful when later on you might need to assign a variable depending on one of the previous assigned variables.
+```javascript
+// good
+var items   = getItems(),
+    isFresh = true,
+    topHtml = 'z';
+```
+
+Declare unassigned variables last.
+> This is helpful when later on you might need to assign a variable depending on one of the previous assigned variables.
 
 ```javascript
 // bad
-var i, len, dragonball,
+var i, len,
 	items = getItems(),
-	goSportsTeam = true;
-
-// bad
-var i, items = getItems(),
-	dragonball,
 	goSportsTeam = true,
-	len;
+	dragonball;
+```
 
+```javascript
 // good
 var items = getItems(),
 	goSportsTeam = true,
-	dragonball,
-	length,
-	i;
+	dragonball, length, i;
 ```
 
-- Assign variables at the top of their scope. This helps avoid issues with variable declaration and assignment hoisting related issues.
+Group your vars by meaning and try to align them.
+```javascript
+var items = [],
+    goods = {},
+    maps  = null,
+    topMarks  = [5,6,7],
+    topGrades = [56,57,58], 
+	topCars   = null,
+	// all best categories
+	bestBooks, bestFilms, bestSongs,
+	// everything about customer
+	customerTickets, customerLogin, customerLinks;
+```
+
+Assign variables at the top of their scope.
+> This helps avoid issues with variable declaration and assignment hoisting related issues.
 
 ```javascript
 // bad
-function() {
-  test();
-  console.log('doing stuff..');
+function nope () {
+	test();
 
-  //..other stuff..
+	// other stuff ...
 
-  var name = getName();
+	var name = getName();
 
-  if (name === 'test') {
-	return false;
-  }
+	if ( name === 'test' ) {
+		return false;
+	}
 
-  return name;
-}
-
-// good
-function() {
-  var name = getName();
-
-  test();
-  console.log('doing stuff..');
-
-  //..other stuff..
-
-  if (name === 'test') {
-	return false;
-  }
-
-  return name;
-}
-
-// bad
-function() {
-  var name = getName();
-
-  if (!arguments.length) {
-	return false;
-  }
-
-  return true;
-}
-
-// good
-function() {
-  if (!arguments.length) {
-	return false;
-  }
-
-  var name = getName();
-
-  return true;
+	return name;
 }
 ```
 
-**[[⬆]](#TOC)**
+```javascript
+// good
+function yep () {
+	var name = getName();
+
+	test();
+
+	// other stuff ...
+
+	if ( name === 'test' ) {
+		return false;
+	}
+
+	return name;
+}
+```
+
+```javascript
+// bad
+function nope () {
+	var name = getName();
+
+	if ( !arguments.length ) {
+		return false;
+	}
+
+    // other stuff ...
+
+	return true;
+}
+```
+
+```javascript
+// good
+function yep () {
+	var name;
+	
+	if ( !arguments.length ) {
+		return false;
+	}
+
+	name = getName();
+
+    // other stuff ...
+
+	return true;
+}
+```
 
 
 ## <a name='hoisting'>Hoisting</a>

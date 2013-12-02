@@ -983,56 +983,36 @@ this.$body = document.querySelector('div.page');
 
 ## <a name='accessors'>Accessors</a>
 
-- Accessor functions for properties are not required
-- If you do make accessor functions use getVal() and setVal('hello')
+Accessor functions for properties are not required. If you do make accessor functions use `getVal()` and `setVal('hello')`.
+It’s okay to create `get()` and `set()` functions, but be consistent.
 
 ```javascript
 // bad
-dragon.age();
+dragon.age();    // getter
+dragon.age(25);  // setter
+```
 
+```javascript
 // good
 dragon.getAge();
-
-// bad
-dragon.age(25);
-
-// good
 dragon.setAge(25);
 ```
 
-- If the property is a boolean, use isVal() or hasVal()
+If the property is a boolean, use `isVal()` or `hasVal()`.
 
 ```javascript
 // bad
-if (!dragon.age()) {
-  return false;
-}
-
-// good
-if (!dragon.hasAge()) {
-  return false;
+if ( !dragon.age() ) {
+    return false;
 }
 ```
-
-- It's okay to create get() and set() functions, but be consistent.
 
 ```javascript
-function Jedi(options) {
-  options || (options = {});
-  var lightsaber = options.lightsaber || 'blue';
-  this.set('lightsaber', lightsaber);
+// good
+if ( !dragon.hasAge() ) {
+    return false;
 }
-
-Jedi.prototype.set = function(key, val) {
-  this[key] = val;
-};
-
-Jedi.prototype.get = function(key) {
-  return this[key];
-};
 ```
-
-**[[⬆]](#TOC)**
 
 
 ## <a name='constructors'>Constructors</a>

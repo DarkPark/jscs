@@ -497,36 +497,28 @@ if ( a === 1 && b === 2 && a1 === 1 && b1 === 2 ) {
 ```
 
 
-
-
-
 ## <a name='blocks'>Blocks</a>
 
-- Use braces with all multi-line blocks.
+Always use braces with all blocks.
 
 ```javascript
 // bad
-if (test)
-  return false;
-
-// good
-if (test) return false;
-
-// good
-if (test) {
-  return false;
-}
+if ( isReady )
+    return true;
 
 // bad
-function() { return false; }
-
-// good
-function() {
-  return false;
-}
+if ( isReady ) return true;
 ```
 
-**[[⬆]](#TOC)**
+```javascript
+// good
+if ( isReady ) {
+    return true;
+}
+
+// good
+if ( isReady ) { return true; }
+```
 
 
 ## <a name='comments'>Comments</a>

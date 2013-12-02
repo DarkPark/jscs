@@ -523,95 +523,42 @@ if ( isReady ) { return true; }
 
 ## <a name='comments'>Comments</a>
 
-- Use `/** ... */` for multiline comments. Include a description, specify types and values for all parameters and return values.
+Use `/** ... */` for multiline comments and `//` (with a space) for single line comments.  
+For var/function/class declarations [JSDoc](http://usejsdoc.org/) should be used.
 
 ```javascript
+//bad
+
+// also
 // bad
-// make() returns a new element
-// based on the passed in tag name
-//
-// @param <String> tag
-// @return <Element> element
-function make(tag) {
+```
 
-  // ...stuff...
-
-  return element;
-}
-
+```javascript
 // good
+
 /**
- * make() returns a new element
- * based on the passed in tag name
- *
- * @param <String> tag
- * @return <Element> element
+ * good
+ * when there is a lot to comment
  */
-function make(tag) {
-
-  // ...stuff...
-
-  return element;
-}
 ```
 
-- Use `//` for single line comments. Place single line comments on a newline above the subject of the comment. Put an empty line before the comment.
-
+Use `//FIXME:` to annotate problems.
+> Helps other developers quickly understand if you're pointing out a problem that needs to be revisited.
 ```javascript
-// bad
-var active = true;  // is current tab
-
-// good
-// is current tab
-var active = true;
-
-// bad
-function getType() {
-  console.log('fetching type...');
-  // set the default type to 'no type'
-  var type = this._type || 'no type';
-
-  return type;
-}
-
-// good
-function getType() {
-  console.log('fetching type...');
-
-  // set the default type to 'no type'
-  var type = this._type || 'no type';
-
-  return type;
+function build () {
+    //FIXME: shouldn't use a global here
+    total = 0;
 }
 ```
 
-- Prefixing your comments with `FIXME` or `TODO` helps other developers quickly understand if you're pointing out a problem that needs to be revisited, or if you're suggesting a solution to the problem that needs to be implemented. These are different than regular comments because they are actionable. The actions are `FIXME -- need to figure this out` or `TODO -- need to implement`.
-
-- Use `// FIXME:` to annotate problems
-
+Use `//TODO:` to annotate solutions to problems.
+> Helps other developers to see if you're suggesting a solution to the problem that needs to be implemented.
 ```javascript
-function Calculator() {
-
-  // FIXME: shouldn't use a global here
-  total = 0;
-
-  return this;
+function build () {
+    //TODO: total should be configurable by an options param
+    this.total = 0;
 }
 ```
-
-- Use `// TODO:` to annotate solutions to problems
-
-```javascript
-function Calculator() {
-
-  // TODO: total should be configurable by an options param
-  this.total = 0;
-
-  return this;
-}
-```
-
-**[[⬆]](#TOC)**
 
 
 ## <a name='whitespace'>Whitespace</a>

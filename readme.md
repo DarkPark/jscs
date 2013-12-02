@@ -442,50 +442,62 @@ function yep ( isReady ) {
 
 ## <a name='conditionals'>Conditional Expressions & Equality</a>
 
-- Use `===` and `!==` over `==` and `!=`.
-- Conditional expressions are evaluated using coercion with the `ToBoolean` method and always follow these simple rules:
+Use `===` and `!==` over `==` and `!=`.
+> This helps to maintain data type integrity throughout your code and has a better performance.  
+> For more information see [Truth Equality and JavaScript](http://javascriptweblog.wordpress.com/2011/02/07/truth-equality-and-javascript/#more-2108).
 
-+ **Objects** evaluate to **true**
-+ **Undefined** evaluates to **false**
-+ **Null** evaluates to **false**
-+ **Booleans** evaluate to **the value of the boolean**
-+ **Numbers** evaluate to **false** if **+0, -0, or NaN**, otherwise **true**
-+ **Strings** evaluate to **false** if an empty string `''`, otherwise **true**
+Conditional expressions are evaluated using coercion with the `ToBoolean` method and always follow these simple rules:
 
-```javascript
-if ([0]) {
-  // true
-  // An array is an object, objects evaluate to true
-}
-```
++ `Objects` evaluate to `true`
++ `Undefined` evaluates to `false`
++ `Null` evaluates to `false`
++ `Booleans` evaluate to the value of the boolean
++ `Numbers` evaluate to `false` if `+0`, `-0`, or `NaN`, otherwise `true`
++ `Strings` evaluate to `false` if an empty string `''`, otherwise `true`
 
-- Use shortcuts.
+Use shortcuts.
 
 ```javascript
 // bad
-if (name !== '') {
-  // ...stuff...
-}
-
-// good
-if (name) {
-  // ...stuff...
-}
-
-// bad
-if (collection.length > 0) {
-  // ...stuff...
-}
-
-// good
-if (collection.length) {
-  // ...stuff...
+if ( name !== '' && collection.length > 0 ) {
+    // stuff ...
 }
 ```
 
-- For more information see [Truth Equality and JavaScript](http://javascriptweblog.wordpress.com/2011/02/07/truth-equality-and-javascript/#more-2108) by Angus Croll
+```javascript
+// good
+if ( name && collection.length ) {
+    // stuff ...
+}
+```
 
-**[[⬆]](#TOC)**
+Use simple single `if` for complex expressions.
+
+```javascript
+// bad
+if ( a === 1 ) {
+    if ( b === 2 ) {
+        if ( a1 === 1 ) {
+            if ( b1 === 2 ) {
+                c = 1;
+            }
+        }
+    }
+}
+
+// also bad
+(a === 1) && (b === 2) && (a1 === 1) && (b1 === 2) && (c = 1);
+```
+
+```javascript
+// good
+if ( a === 1 && b === 2 && a1 === 1 && b1 === 2 ) {
+    c = 1;
+}
+```
+
+
+
 
 
 ## <a name='blocks'>Blocks</a>

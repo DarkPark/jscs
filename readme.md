@@ -76,6 +76,16 @@ var superman = {
 };
 ```
 
+`for-in` loop should be used only for iterating over keys in an object/map/hash.
+> Such loops are often incorrectly used to loop over the elements in an Array. This is however very error prone because it does not loop from 0 to length - 1 but over all the present keys in the object and its prototype chain.
+
+```javascript
+// only for objects (not arrays)
+for ( var key in obj ) {
+    console.log(obj[key]);
+}
+```
+
 
 ## <a name='arrays'>Arrays</a>
 
@@ -117,6 +127,21 @@ function trigger() {
     var args = Array.prototype.slice.call(arguments);
     ...
 }
+```
+
+Use simple iteration for big data. `forEach` approach looks better but good only for small arrays.
+> Anonymous iteration function call has a small cost but multiplied by millions gives bad results.
+```javascript
+// good for large arrays
+var i, l = arr.length;
+for ( i = 0; i < l; i++ ) {
+    console.log(arr[i]);
+}
+
+// good for small arrays
+arr.forEach(function ( item ) {
+    console.log(arr[i]);
+});
 ```
 
 
@@ -228,6 +253,39 @@ function yup ( name, options, args ) {
 }
 ```
 
+When possible, all function arguments should be listed on the same line. If doing so would exceed the 80-column limit, the arguments must be line-wrapped in a readable way. To save space, you may wrap as close to 100 as possible, or put each argument on its own line to enhance readability. The indentation may be either one tab, or aligned to the parenthesis.
+
+```javascript
+// works with very long function names, survives renaming without reindenting
+some.name.space.withSomeVeryLongFunctionName = function (
+    veryLongArg1, veryLongArg2,
+    veryLongArg3, veryLongArg4 ) {
+    // ...
+};
+
+// one argument per line, survives renaming and emphasizes each argument
+some.name.space.withSomeVeryLongFunctionName = function (
+    veryLongArg1,
+    veryLongArg2,
+    veryLongArg3,
+    veryLongArg4 ) {
+    // ...
+};
+
+// visually groups arguments
+function test ( veryLongArg1, veryLongArg2,
+                veryLongArg3, veryLongArg4 ) {
+    // ...
+}
+
+// parenthesis-aligned, one emphasized argument per line
+function test ( veryLongArg1,
+                veryLongArg2,
+                veryLongArg3,
+                veryLongArg4 ) {
+    // ...
+}
+```
 
 ## <a name='properties'>Properties</a>
 
@@ -270,7 +328,7 @@ Foo.prototype.dispose = function () {
 ## <a name='variables'>Variables</a>
 
 Always use `var` to declare variables.
-> Not doing so will result in global variables. We want to avoid polluting the global namespace.
+> When you fail to specify var, the variable gets placed in the global context, potentially clobbering existing values. Also, if there's no declaration, it's hard to tell in what scope a variable lives (e.g., it could be in the Document or Window just as easily as in the local scope). So always declare with var.
 
 ```javascript
 // bad
@@ -520,6 +578,16 @@ if ( isReady ) {
 if ( isReady ) { return true; }
 ```
 
+Because of implicit semicolon insertion, always start your curly braces on the same line as whatever they're opening.
+
+```javascript
+if ( something ) {
+    // ...
+} else {
+    // ...
+}
+```
+
 
 ## <a name='comments'>Comments</a>
 
@@ -685,6 +753,24 @@ $('#items')
         .updateCount();
 ```
 
+Single-line array and object initializers are allowed when they fit on a line.
+
+```javascript
+var arr = [1, 2, 3];           // No space after [ or before ].
+var obj = {a: 1, b: 2, c: 3};  // No space after { or before }.
+```
+
+Use newlines to group logically related pieces of code.
+
+```javascript
+doSomethingTo(x);
+doSomethingElseTo(x);
+andThen(x);
+
+nowDoSomethingWith(y);
+
+andNowWith(z);
+```
 
 ## <a name='commas'>Commas</a>
 
@@ -924,6 +1010,12 @@ var good = new User({
 });
 ```
 
+If a value is intended to be constant and immutable, it should be given a name in `CONSTANT_VALUE_CASE`.
+
+```javascript
+this.TIMEOUT_IN_MILLISECONDS = 60;
+```
+
 Use a leading underscore `_` when naming private properties.
 
 ```javascript
@@ -981,10 +1073,23 @@ Use leading `$` to indicate that a DOM element is assigned to this variable.
 this.$body = document.querySelector('div.page');
 ```
 
+Use dot as a separator for filenames. Only lowercase allowed in order to avoid confusion on case-sensitive platforms. Filenames should contain no punctuation.
+
+```javascript
+// bad
+modelmain.js
+ModelMain.js
+model_main.js
+model-main.js
+model main.js
+
+// good
+model.main.js
+```
+
 ## <a name='accessors'>Accessors</a>
 
-Accessor functions for properties are not required. If you do make accessor functions use `getVal()` and `setVal('hello')`.
-It’s okay to create `get()` and `set()` functions, but be consistent.
+Getters and setters methods for properties are not required. If you do make accessor functions use `getVal()` and `setVal('hello')`. It’s okay to create `get()` and `set()` functions, but be consistent.
 
 ```javascript
 // bad
@@ -1169,3 +1274,15 @@ Fix problem Y
 * [Google JavaScript Style Guide](http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml)
 * [jQuery JavaScript Style Guide](http://contribute.jquery.org/style-guide/js/)
 * [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
+
+
+
+`eval()` is only for code loaders.
+> It makes for confusing semantics and is dangerous to use if the string being eval()'d contains user input. There's usually a better, clearer, and safer way to write your code, so its use is generally not permitted.
+
+`with () { ... }` should be avoided.
+> Using with clouds the semantics of your program. Because the object of the with can have properties that collide with local variables, it can drastically change the meaning of your program.
+
+
+Modifying prototypes of builtin objects should be avoided.
+> Modifying builtins like `Object.prototype` and `Array.prototype` are forbidden. Modifying other builtins like `Function.prototype` is less dangerous but still leads to hard to debug issues in production and should be avoided.

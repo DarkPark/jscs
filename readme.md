@@ -563,98 +563,128 @@ function build () {
 
 ## <a name='whitespace'>Whitespace</a>
 
-- Use soft tabs set to 2 spaces
+Use one single tab character for one-level indentation.
 
 ```javascript
 // bad
-function() {
+function test () {
 ∙∙∙∙var name;
 }
 
 // bad
-function() {
-∙var name;
-}
-
-// good
-function() {
+function test () {
 ∙∙var name;
 }
 ```
-- Place 1 space before the leading brace.
+
+```javascript
+// good
+function test () {
+    var name;
+}
+```
+Place one space before the leading brace.
 
 ```javascript
 // bad
 function test(){
-  console.log('test');
-}
-
-// good
-function test() {
-  console.log('test');
+    // ...
 }
 
 // bad
 dog.set('attr',{
-  age: '1 year',
-  breed: 'Bernese Mountain Dog'
+    age: '1 year',
+    breed: 'Bernese Mountain Dog'
 });
+```
+
+```javascript
+// good
+function test () {
+    // ...
+}
 
 // good
 dog.set('attr', {
-  age: '1 year',
-  breed: 'Bernese Mountain Dog'
+    age: '1 year',
+    breed: 'Bernese Mountain Dog'
 });
 ```
-- Place an empty newline at the end of the file.
+
+Separate function name and its parameters in declaration.
 
 ```javascript
 // bad
-(function(global) {
-  // ...stuff...
-})(this);
+function test(){
+    // ...
+}
+
+// bad
+function test(a, b){
+    // ...
+}
 ```
 
 ```javascript
 // good
-(function(global) {
-  // ...stuff...
-})(this);
+function test ( a, b ) {
+    // ...
+}
 
+// but no starting/ending spaces on execution
+test(128, 'qwe');
 ```
 
-- Use indentation when making long method chains.
+The same for `if`, `if/else`, `switch`, `try/catch` blocks.
+
+```javascript
+// bad
+if(isReady){
+    // ...
+}
+
+// bad
+try{
+    // ...
+}catch(e){
+    // error handling
+}
+```
+
+```javascript
+// good
+if ( isReady ) {
+    // ...
+}
+
+// good
+try {
+    // ...
+} catch ( e ) {
+    // error handling
+}
+```
+
+Place an empty newline at the end of a file.
+> Each line should be terminated with a newline character, including the last one. Some programs have problems processing the last line of a file if it isn't newline terminated.
+
+Use line breaks and indentation when making long method chains.
 
 ```javascript
 // bad
 $('#items').find('.selected').highlight().end().find('.open').updateCount();
-
-// good
-$('#items')
-  .find('.selected')
-	.highlight()
-	.end()
-  .find('.open')
-	.updateCount();
-
-// bad
-var leds = stage.selectAll('.led').data(data).enter().append('svg:svg').class('led', true)
-	.attr('width',  (radius + margin) * 2).append('svg:g')
-	.attr('transform', 'translate(' + (radius + margin) + ',' + (radius + margin) + ')')
-	.call(tron.led);
-
-// good
-var leds = stage.selectAll('.led')
-	.data(data)
-  .enter().append('svg:svg')
-	.class('led', true)
-	.attr('width',  (radius + margin) * 2)
-  .append('svg:g')
-	.attr('transform', 'translate(' + (radius + margin) + ',' + (radius + margin) + ')')
-	.call(tron.led);
 ```
 
-**[[⬆]](#TOC)**
+```javascript
+// good
+$('#items')
+    .find('.selected')
+        .highlight()
+        .end()
+    .find('.open')
+        .updateCount();
+```
+
 
 ## <a name='commas'>Commas</a>
 

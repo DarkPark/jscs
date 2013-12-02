@@ -754,29 +754,44 @@ var heroes = [
 
 ## <a name='semicolons'>Semicolons</a>
 
-- **Yup.**
+Semicolons use is mandatory.
+> Relying on [ASI](http://es5.github.io/#x7.9) (Automatic Semicolon Insertion) can cause subtle, hard to debug [problems](http://benalman.com/news/2013/01/advice-javascript-semicolon-haters/).
 
 ```javascript
 // bad
-(function() {
-  var name = 'Skywalker'
-  return name
+a = b + c
+test()
+
+// bad
+(function () {
+    var name = 'Skywalker'
+    return name
 })()
+```
+
+```javascript
+// good
+a = b + c;
+test();
 
 // good
 (function() {
-  var name = 'Skywalker';
-  return name;
-})();
-
-// good
-;(function() {
-  var name = 'Skywalker';
-  return name;
+    var name = 'Skywalker';
+    return name;
 })();
 ```
 
-**[[⬆]](#TOC)**
+Semicolons should be included at the end of function expressions, but not at the end of function declarations.
+
+```javascript
+var foo = function () {
+    return true;
+};  // semicolon here
+
+function foo () {
+    return true;
+}  // no semicolon here
+```
 
 
 ## <a name='type-coercion'>Type Casting & Coercion</a>

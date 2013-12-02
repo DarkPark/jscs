@@ -14,7 +14,7 @@ It is inspired by what is popular within the community, and flavored with some p
   1. [Conditional Expressions & Equality](#conditionals)
   1. [Blocks](#blocks)
   1. [Comments](#comments)
-  1. [Whitespace](#whitespace)
+  1. [Whitespaces](#whitespaces)
   1. [Commas](#commas)
   1. [Semicolons](#semicolons)
   1. [Type Casting & Coercion](#type-coercion)
@@ -561,7 +561,7 @@ function build () {
 ```
 
 
-## <a name='whitespace'>Whitespace</a>
+## <a name='whitespaces'>Whitespaces</a>
 
 Use one single tab character for one-level indentation.
 
@@ -631,7 +631,7 @@ function test ( a, b ) {
     // ...
 }
 
-// but no starting/ending spaces on execution
+// but no leading/trailing spaces on execution
 test(128, 'qwe');
 ```
 
@@ -688,18 +688,13 @@ $('#items')
 
 ## <a name='commas'>Commas</a>
 
-- Leading commas: **Nope.**
+No Leading commas.
 
 ```javascript
 // bad
 var once
-  , upon
-  , aTime;
-
-// good
-var once,
-	upon,
-	aTime;
+    , upon
+    , aTime;
 
 // bad
 var hero = {
@@ -708,45 +703,53 @@ var hero = {
   , heroName: 'Mr. Incredible'
   , superPower: 'strength'
 };
+```
+
+```javascript
+// good
+var once,
+    upon,
+    aTime;
 
 // good
 var hero = {
-  firstName: 'Bob',
-  lastName: 'Parr',
-  heroName: 'Mr. Incredible',
-  superPower: 'strength'
+    firstName:  'Bob',
+    lastName:   'Parr',
+    heroName:   'Mr. Incredible',
+    superPower: 'strength'
 };
 ```
 
-- Additional trailing comma: **Nope.** This can cause problems with IE6/7 and IE9 if it's in quirksmode. Also, in some implementations of ES3 would add length to an array if it had an additional trailing comma. This was clarified in ES5 ([source](http://es5.github.io/#D)):
-
-> Edition 5 clarifies the fact that a trailing comma at the end of an ArrayInitialiser does not add to the length of the array. This is not a semantic change from Edition 3 but some implementations may have previously misinterpreted this.
+No Additional trailing comma.
+> This can cause problems with IE6/7 and IE9 if it's in quirksmode. Also, in some implementations of ES3 would add length to an array if it had an additional trailing comma. This was clarified in [ES5](http://es5.github.io/#D).
 
 ```javascript
 // bad
 var hero = {
-  firstName: 'Kevin',
-  lastName: 'Flynn',
+    firstName: 'Kevin',
+    lastName: 'Flynn',
 };
 
+// bad
 var heroes = [
-  'Batman',
-  'Superman',
-];
-
-// good
-var hero = {
-  firstName: 'Kevin',
-  lastName: 'Flynn'
-};
-
-var heroes = [
-  'Batman',
-  'Superman'
+    'Batman',
+    'Superman',
 ];
 ```
 
-**[[⬆]](#TOC)**
+```javascript
+// good
+var hero = {
+    firstName: 'Kevin',
+    lastName: 'Flynn'
+};
+
+// good
+var heroes = [
+    'Batman',
+    'Superman'
+];
+```
 
 
 ## <a name='semicolons'>Semicolons</a>

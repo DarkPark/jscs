@@ -860,21 +860,23 @@ var hasAge = !!age;
 
 ## <a name='naming-conventions'>Naming Conventions</a>
 
-- Avoid single letter names. Be descriptive with your naming.
+Avoid single letter names. Be descriptive with your naming.
 
 ```javascript
 // bad
-function q() {
-  // ...stuff...
-}
-
-// good
-function query() {
-  // ..stuff..
+function q () {
+    // ...
 }
 ```
 
-- Use camelCase when naming objects, functions, and instances
+```javascript
+// good
+function query () {
+    // ...
+}
+```
+
+Use camelCase when naming objects, functions, and instances.
 
 ```javascript
 // bad
@@ -882,94 +884,102 @@ var OBJEcttsssss = {};
 var this_is_my_object = {};
 function c() {};
 var u = new user({
-  name: 'Bob Parr'
-});
-
-// good
-var thisIsMyObject = {};
-function thisIsMyFunction() {};
-var user = new User({
-  name: 'Bob Parr'
+    name: 'Bob Parr'
 });
 ```
 
-- Use PascalCase when naming constructors or classes
+```javascript
+// good
+var thisIsMyObject = {},
+    user = new User({
+        name: 'Bob Parr'
+    });
+
+function thisIsMyFunction() {
+    // ...
+};
+```
+
+Use PascalCase when naming constructors or classes.
 
 ```javascript
 // bad
-function user(options) {
-  this.name = options.name;
+function user ( options ) {
+    this.name = options.name;
 }
 
 var bad = new user({
-  name: 'nope'
-});
-
-// good
-function User(options) {
-  this.name = options.name;
-}
-
-var good = new User({
-  name: 'yup'
+    name: 'nope'
 });
 ```
 
-- Use a leading underscore `_` when naming private properties
+```javascript
+// good
+function User ( options ) {
+    this.name = options.name;
+}
+
+var good = new User({
+    name: 'yup'
+});
+```
+
+Use a leading underscore `_` when naming private properties.
 
 ```javascript
 // bad
 this.__firstName__ = 'Panda';
 this.firstName_ = 'Panda';
+```
 
+```javascript
 // good
 this._firstName = 'Panda';
 ```
 
-- When saving a reference to `this` use `_this`.
+When saving a reference to `this` use `self`.
 
 ```javascript
 // bad
-function() {
-  var self = this;
-  return function() {
-	console.log(self);
-  };
-}
-
-// bad
-function() {
-  var that = this;
-  return function() {
-	console.log(that);
-  };
-}
-
-// good
-function() {
-  var _this = this;
-  return function() {
-	console.log(_this);
-  };
+function () {
+    var that = this;
+    return function () {
+        console.log(that);
+    };
 }
 ```
 
-- Name your functions. This is helpful for stack traces.
+```javascript
+// good
+function () {
+    var self = this;
+    return function () {
+        console.log(self);
+    };
+}
+```
+
+Name your functions. This is helpful for stack traces.
 
 ```javascript
 // bad
-var log = function(msg) {
-  console.log(msg);
-};
-
-// good
-var log = function log(msg) {
-  console.log(msg);
+var log = function ( msg ) {
+    console.log(msg);
 };
 ```
 
-**[[⬆]](#TOC)**
+```javascript
+// good
+var log = function log ( msg ) {
+    console.log(msg);
+};
+```
 
+Use leading `$` to indicate that a DOM element is assigned to this variable.
+
+```javascript
+this.$body = document.querySelector('div.page');
+```
 
 ## <a name='accessors'>Accessors</a>
 

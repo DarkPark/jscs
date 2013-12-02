@@ -401,6 +401,32 @@ function yep () {
 }
 ```
 
+In complex cases use JavaScript similar approach.
+```javascript
+// bad
+function nope ( isReady ) {
+	if ( !isReady ) return;
+	
+	var name = getName(),
+	    a, b, c;
+
+    // other stuff ...
+}
+```
+
+```javascript
+// good
+function yep ( isReady ) {
+    var name, a, b, c;
+    
+	if ( !isReady ) return;
+	
+	name = getName();
+
+    // other stuff ...
+}
+```
+
 
 ## <a name='hoisting'>Hoisting</a>
 

@@ -225,7 +225,7 @@ var named = function named() {
 })();
 ```
 
-Never declare a function in a non-function block (if, while, etc).
+Never declare a function in a non-function block (`if`, `while`, etc).
 > Assign the function to a variable instead. Browsers will allow you to do it, but they all interpret it differently.
 
 ```javascript
@@ -260,7 +260,7 @@ function yup ( name, options, args ) {
 }
 ```
 
-When possible, all function arguments should be listed on the same line. If doing so would exceed the 80-column limit, the arguments must be line-wrapped in a readable way. To save space, you may wrap as close to 100 as possible, or put each argument on its own line to enhance readability. The indentation may be either one tab, or aligned to the parenthesis.
+When possible, all function arguments should be listed on the same line. If doing so would exceed the 100-column limit, the arguments must be line-wrapped in a readable way. To save space, you may wrap as close to 100 as possible, or put each argument on its own line to enhance readability. The indentation may be either one tab, or aligned to the parenthesis.
 
 ```javascript
 // works with very long function names, survives renaming without reindenting
@@ -607,7 +607,7 @@ if ( something ) {
 }
 ```
 
-`with () { ... }` should be avoided.
+`with ( someVar ) { ... }` should be avoided.
 > Using with clouds the semantics of your program. Because the object of the with can have properties that collide with local variables, it can drastically change the meaning of your program.
 
 
@@ -626,6 +626,11 @@ Use `//` (with a trailing space) for both single line and multi line comments. T
 
 // good
 // when there is a lot to comment
+
+// also good
+var active  = true,   // this var description
+	single  = false,  // another var description
+	isReady = false;  // and one more
 ```
 
 For var/function/class declarations [JSDoc](http://usejsdoc.org/) should be used.
@@ -1314,7 +1319,7 @@ Jedi.prototype.toString = function toString () {
 
 When attaching data to events it's always should be only one parameter.
 Pass a hash instead of a raw value in case there are more then one parameter.
-> This approach allows `EventEmitter` implementation with better performance 
+> This approach allows `EventEmitter` implementation with better performance.
 
 ```javascript
 // bad

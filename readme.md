@@ -50,16 +50,16 @@ Don't use [reserved words](http://es5.github.io/#x7.6.1) as keys.
 ```javascript
 // bad
 var superman = {
-    default: {clark: 'kent'},
-    private: true
+	default: {clark: 'kent'},
+	private: true
 };
 ```
 
 ```javascript
 // good
 var superman = {
-    defaults: {clark: 'kent'},
-    hidden: true
+	defaults: {clark: 'kent'},
+	hidden: true
 };
 ```
 
@@ -68,14 +68,14 @@ Use readable synonyms in place of reserved words.
 ```javascript
 // bad
 var superman = {
-    klass: 'alien'
+	klass: 'alien'
 };
 ```
 
 ```javascript
 // good
 var superman = {
-    type: 'alien'
+	type: 'alien'
 };
 ```
 
@@ -85,7 +85,7 @@ var superman = {
 ```javascript
 // only for objects (not arrays)
 for ( var key in obj ) {
-    console.log(obj[key]);
+	console.log(obj[key]);
 }
 ```
 
@@ -130,8 +130,8 @@ To convert an [array-like](http://www.2ality.com/2013/05/quirk-array-like-object
 
 ```javascript
 function trigger() {
-    var args = Array.prototype.slice.call(arguments);
-    ...
+	var args = Array.prototype.slice.call(arguments);
+	// ...
 }
 ```
 
@@ -142,12 +142,12 @@ Use simple iteration for big data. `forEach` approach looks better but good only
 // good for large arrays
 var i, l = arr.length;
 for ( i = 0; i < l; i++ ) {
-    console.log(arr[i]);
+	console.log(arr[i]);
 }
 
 // good for small arrays
 arr.forEach(function ( item ) {
-    console.log(arr[i]);
+	console.log(arr[i]);
 });
 ```
 
@@ -160,13 +160,13 @@ Use single quotes `''` for strings.
 ```javascript
 // bad
 var name = "Bob Parr",
-    fullName = "Bob " + this.lastName;
+	fullName = "Bob " + this.lastName;
 ```
 
 ```javascript
 // good
 var name = 'Bob Parr',
-    fullName = 'Bob ' + this.lastName;
+	fullName = 'Bob ' + this.lastName;
 ```
 
 Strings longer than 100 characters should be written across multiple lines using string concatenation.
@@ -211,17 +211,17 @@ Function expressions:
 ```javascript
 // anonymous function expression
 var anonymous = function() {
-    return true;
+	return true;
 };
 
 // named function expression
 var named = function named() {
-    return true;
+	return true;
 };
 
 // immediately-invoked function expression (IIFE)
 (function() {
-    return true;
+	return true;
 })();
 ```
 
@@ -231,17 +231,17 @@ Never declare a function in a non-function block (`if`, `while`, etc).
 ```javascript
 // bad
 if ( currentUser ) {
-    function test () {
-        console.log('Nope.');
-    }
+	function test () {
+		console.log('Nope.');
+	}
 }
 
 // good
 var test;
 if ( currentUser ) {
-    test = function test () {
-        console.log('Yup.');
-    };
+	test = function test () {
+		console.log('Yup.');
+	};
 }
 ```
 
@@ -251,12 +251,12 @@ Never name a parameter `arguments`.
 ```javascript
 // bad
 function nope ( name, options, arguments ) {
-    ...
+	// ...
 }
 
 // good
 function yup ( name, options, args ) {
-    ...
+	// ...
 }
 ```
 
@@ -265,32 +265,32 @@ When possible, all function arguments should be listed on the same line. If doin
 ```javascript
 // works with very long function names, survives renaming without reindenting
 some.name.space.withSomeVeryLongFunctionName = function (
-    veryLongArg1, veryLongArg2,
-    veryLongArg3, veryLongArg4 ) {
-    // ...
+	veryLongArg1, veryLongArg2,
+	veryLongArg3, veryLongArg4 ) {
+	// ...
 };
 
 // one argument per line, survives renaming and emphasizes each argument
 some.name.space.withSomeVeryLongFunctionName = function (
-    veryLongArg1,
-    veryLongArg2,
-    veryLongArg3,
-    veryLongArg4 ) {
-    // ...
+	veryLongArg1,
+	veryLongArg2,
+	veryLongArg3,
+	veryLongArg4 ) {
+	// ...
 };
 
 // visually groups arguments
 function test ( veryLongArg1, veryLongArg2,
-                veryLongArg3, veryLongArg4 ) {
-    // ...
+				veryLongArg3, veryLongArg4 ) {
+	// ...
 }
 
 // parenthesis-aligned, one emphasized argument per line
 function test ( veryLongArg1,
-                veryLongArg2,
-                veryLongArg3,
-                veryLongArg4 ) {
-    // ...
+				veryLongArg2,
+				veryLongArg3,
+				veryLongArg4 ) {
+	// ...
 }
 ```
 
@@ -311,7 +311,7 @@ var data = items.pear;
 
 // also good
 var name = 'pear',
-    data = items[name];
+	data = items[name];
 ```
 
 Delete properties with assigning to `null`.
@@ -320,14 +320,14 @@ Delete properties with assigning to `null`.
 ```javascript
 // think twice
 Foo.prototype.dispose = function () {
-    delete this.someProperty;
+	delete this.someProperty;
 };
 ```
 
 ```javascript
 // good in most cases
 Foo.prototype.dispose = function () {
-    this.someProperty = null;
+	this.someProperty = null;
 };
 ```
 
@@ -359,8 +359,8 @@ var topHtml = 'z';
 ```javascript
 // good
 var items   = getItems(),
-    isFresh = true,
-    topHtml = 'z';
+	isFresh = true,
+	topHtml = 'z';
 ```
 
 Declare unassigned variables last.
@@ -384,10 +384,10 @@ var items = getItems(),
 Group your vars by meaning and try to align them.
 ```javascript
 var items = [],
-    goods = {},
-    maps  = null,
-    topMarks  = [5,6,7],
-    topGrades = [56,57,58], 
+	goods = {},
+	maps  = null,
+	topMarks  = [5,6,7],
+	topGrades = [56,57,58], 
 	topCars   = null,
 	// all best categories
 	bestBooks, bestFilms, bestSongs,
@@ -403,7 +403,7 @@ Assign variables at the top of their scope.
 function nope () {
 	test();
 
-	// other stuff ...
+	// ...
 
 	var name = getName();
 
@@ -422,7 +422,7 @@ function yep () {
 
 	test();
 
-	// other stuff ...
+	// ...
 
 	if ( name === 'test' ) {
 		return false;
@@ -441,7 +441,7 @@ function nope () {
 		return false;
 	}
 
-    // other stuff ...
+	// ...
 
 	return true;
 }
@@ -458,7 +458,7 @@ function yep () {
 
 	name = getName();
 
-    // other stuff ...
+	// ...
 
 	return true;
 }
@@ -474,32 +474,32 @@ function nope ( isReady ) {
 	if ( !isReady ) return;
 	
 	var name = getName(),
-	    a, b, c;
+		a, b, c;
 
-    // other stuff ...
+	// ...
 }
 
 // also bad
 function nope ( isReady ) {
 	var name = getName(),
-	    a, b, c;
+		a, b, c;
 
-    if ( !isReady ) return;
+	if ( !isReady ) return;
 
-    // other stuff ...
+	// ...
 }
 ```
 
 ```javascript
 // good
 function yep ( isReady ) {
-    var name, a, b, c;
-    
+	var name, a, b, c;
+
 	if ( !isReady ) return;
 	
 	name = getName();
 
-    // other stuff ...
+	// ...
 }
 ```
 
@@ -524,14 +524,14 @@ Use shortcuts.
 ```javascript
 // bad
 if ( name !== '' && collection.length > 0 ) {
-    // stuff ...
+	// ...
 }
 ```
 
 ```javascript
 // good
 if ( name && collection.length ) {
-    // stuff ...
+	// ...
 }
 ```
 
@@ -540,13 +540,13 @@ Use simple single `if` for complex expressions.
 ```javascript
 // bad
 if ( a === 1 ) {
-    if ( b === 2 ) {
-        if ( a1 === 1 ) {
-            if ( b1 === 2 ) {
-                c = 1;
-            }
-        }
-    }
+	if ( b === 2 ) {
+		if ( a1 === 1 ) {
+			if ( b1 === 2 ) {
+				c = 1;
+			}
+		}
+	}
 }
 
 // also bad
@@ -556,7 +556,7 @@ if ( a === 1 ) {
 ```javascript
 // good
 if ( a === 1 && b === 2 && a1 === 1 && b1 === 2 ) {
-    c = 1;
+	c = 1;
 }
 ```
 
@@ -568,7 +568,7 @@ Always use braces with all blocks.
 ```javascript
 // bad
 if ( isReady )
-    return true;
+	return true;
 
 // bad
 if ( isReady ) return true;
@@ -577,7 +577,7 @@ if ( isReady ) return true;
 ```javascript
 // good
 if ( isReady ) {
-    return true;
+	return true;
 }
 
 // good
@@ -590,20 +590,20 @@ Because of implicit semicolon insertion, always start your curly braces on the s
 // bad
 if ( something )
 {
-    // ...
+	// ...
 }
 else
 {
-    // ...
+	// ...
 }
 ```
 
 ```javascript
 // good
 if ( something ) {
-    // ...
+	// ...
 } else {
-    // ...
+	// ...
 }
 ```
 
@@ -639,8 +639,8 @@ Use `//FIXME:` to annotate problems.
 > Helps other developers quickly understand if you're pointing out a problem that needs to be revisited.
 ```javascript
 function build () {
-    //FIXME: shouldn't use a global here
-    total = 0;
+	//FIXME: shouldn't use a global here
+	total = 0;
 }
 ```
 
@@ -648,8 +648,8 @@ Use `//TODO:` to annotate solutions to problems.
 > Helps other developers to see if you're suggesting a solution to the problem that needs to be implemented.
 ```javascript
 function build () {
-    //TODO: total should be configurable by an options param
-    this.total = 0;
+	//TODO: total should be configurable by an options param
+	this.total = 0;
 }
 ```
 
@@ -673,7 +673,7 @@ function test () {
 ```javascript
 // good
 function test () {
-    var name;
+	var name;
 }
 ```
 
@@ -742,8 +742,8 @@ var flag = isReady ? 1 : 0;
 
 // also good for long expressions
 var flag = isReady
-    ? someVeryLongEvaluatedOrSomethingElseValue
-    : anotherVeryLongEvaluatedOrSomethingElseValue;
+	? someVeryLongEvaluatedOrSomethingElseValue
+	: anotherVeryLongEvaluatedOrSomethingElseValue;
 ```
 
 No spaces in empty constructs like `{}`, `[]`.
@@ -753,26 +753,26 @@ Place one space before the leading brace.
 ```javascript
 // bad
 function test(){
-    // ...
+	// ...
 }
 
 // bad
 dog.set('attr',{
-    age: '1 year',
-    breed: 'Bernese Mountain Dog'
+	age: '1 year',
+	breed: 'Bernese Mountain Dog'
 });
 ```
 
 ```javascript
 // good
 function test () {
-    // ...
+	// ...
 }
 
 // good
 dog.set('attr', {
-    age: '1 year',
-    breed: 'Bernese Mountain Dog'
+	age: '1 year',
+	breed: 'Bernese Mountain Dog'
 });
 ```
 
@@ -781,19 +781,19 @@ Separate function name and its parameters in declaration.
 ```javascript
 // bad
 function test(){
-    // ...
+	// ...
 }
 
 // bad
 function test(a, b){
-    // ...
+	// ...
 }
 ```
 
 ```javascript
 // good
 function test ( a, b ) {
-    // ...
+	// ...
 }
 
 // but no leading/trailing spaces on execution
@@ -805,28 +805,28 @@ The same for `if`, `if/else`, `switch`, `try/catch` blocks.
 ```javascript
 // bad
 if(isReady){
-    // ...
+	// ...
 }
 
 // bad
 try{
-    // ...
+	// ...
 }catch(e){
-    // error handling
+	// error handling
 }
 ```
 
 ```javascript
 // good
 if ( isReady ) {
-    // ...
+	// ...
 }
 
 // good
 try {
-    // ...
+	// ...
 } catch ( e ) {
-    // error handling
+	// error handling
 }
 ```
 
@@ -843,11 +843,11 @@ $('#items').find('.selected').highlight().end().find('.open').updateCount();
 ```javascript
 // good
 $('#items')
-    .find('.selected')
-        .highlight()
-        .end()
-    .find('.open')
-        .updateCount();
+	.find('.selected')
+		.highlight()
+		.end()
+	.find('.open')
+		.updateCount();
 ```
 
 Single-line array and object initializers are allowed when they fit on a line.
@@ -876,8 +876,8 @@ No Leading commas.
 ```javascript
 // bad
 var once
-    , upon
-    , aTime;
+	, upon
+	, aTime;
 
 // bad
 var hero = {
@@ -891,15 +891,15 @@ var hero = {
 ```javascript
 // good
 var once,
-    upon,
-    aTime;
+	upon,
+	aTime;
 
 // good
 var hero = {
-    firstName:  'Bob',
-    lastName:   'Parr',
-    heroName:   'Mr. Incredible',
-    superPower: 'strength'
+	firstName:  'Bob',
+	lastName:   'Parr',
+	heroName:   'Mr. Incredible',
+	superPower: 'strength'
 };
 ```
 
@@ -909,28 +909,28 @@ No Additional trailing comma.
 ```javascript
 // bad
 var hero = {
-    firstName: 'Kevin',
-    lastName: 'Flynn',
+	firstName: 'Kevin',
+	lastName: 'Flynn',
 };
 
 // bad
 var heroes = [
-    'Batman',
-    'Superman',
+	'Batman',
+	'Superman',
 ];
 ```
 
 ```javascript
 // good
 var hero = {
-    firstName: 'Kevin',
-    lastName: 'Flynn'
+	firstName: 'Kevin',
+	lastName: 'Flynn'
 };
 
 // good
 var heroes = [
-    'Batman',
-    'Superman'
+	'Batman',
+	'Superman'
 ];
 ```
 
@@ -947,8 +947,8 @@ test()
 
 // bad
 (function () {
-    var name = 'Skywalker'
-    return name
+	var name = 'Skywalker'
+	return name
 })()
 ```
 
@@ -959,8 +959,8 @@ test();
 
 // good
 (function() {
-    var name = 'Skywalker';
-    return name;
+	var name = 'Skywalker';
+	return name;
 })();
 ```
 
@@ -968,11 +968,11 @@ Semicolons should be included at the end of function expressions, but not at the
 
 ```javascript
 var foo = function () {
-    return true;
+	return true;
 };  // semicolon here
 
 function foo () {
-    return true;
+	return true;
 }  // no semicolon here
 ```
 
@@ -1048,14 +1048,14 @@ Avoid single letter names. Be descriptive with your naming.
 ```javascript
 // bad
 function q () {
-    // ...
+	// ...
 }
 ```
 
 ```javascript
 // good
 function query () {
-    // ...
+	// ...
 }
 ```
 
@@ -1067,19 +1067,19 @@ var OBJEcttsssss = {};
 var this_is_my_object = {};
 function c() {};
 var u = new user({
-    name: 'Bob Parr'
+	name: 'Bob Parr'
 });
 ```
 
 ```javascript
 // good
 var thisIsMyObject = {},
-    user = new User({
-        name: 'Bob Parr'
-    });
+	user = new User({
+		name: 'Bob Parr'
+	});
 
 function thisIsMyFunction() {
-    // ...
+	// ...
 };
 ```
 
@@ -1088,22 +1088,22 @@ Use PascalCase when naming constructors or classes.
 ```javascript
 // bad
 function user ( options ) {
-    this.name = options.name;
+	this.name = options.name;
 }
 
 var bad = new user({
-    name: 'nope'
+	name: 'nope'
 });
 ```
 
 ```javascript
 // good
 function User ( options ) {
-    this.name = options.name;
+	this.name = options.name;
 }
 
 var good = new User({
-    name: 'yup'
+	name: 'yup'
 });
 ```
 
@@ -1132,28 +1132,28 @@ When saving a reference to `this` use `self` or a corresponding meaningful name.
 ```javascript
 // bad
 function () {
-    var that = this;
-    return function () {
-        console.log(that);
-    };
+	var that = this;
+	return function () {
+		console.log(that);
+	};
 }
 ```
 
 ```javascript
 // good
 function () {
-    var self = this;
-    return function () {
-        console.log(self);
-    };
+	var self = this;
+	return function () {
+		console.log(self);
+	};
 }
 
 // also good
 function () {
-    var parentFunc = this;
-    return function () {
-        console.log(parentFunc);
-    };
+	var parentFunc = this;
+	return function () {
+		console.log(parentFunc);
+	};
 }
 ```
 
@@ -1163,14 +1163,14 @@ Name your functions.
 ```javascript
 // bad
 var log = function ( msg ) {
-    console.log(msg);
+	console.log(msg);
 };
 ```
 
 ```javascript
 // good
 var log = function log ( msg ) {
-    console.log(msg);
+	console.log(msg);
 };
 ```
 
@@ -1215,14 +1215,14 @@ If the property is a boolean, use `isVal()` or `hasVal()`.
 ```javascript
 // bad
 if ( !dragon.age() ) {
-    return false;
+	return false;
 }
 ```
 
 ```javascript
 // good
 if ( !dragon.hasAge() ) {
-    return false;
+	return false;
 }
 ```
 
@@ -1234,29 +1234,29 @@ Assign methods to the prototype object, instead of overwriting the prototype wit
 
 ```javascript
 function Jedi () {
-    console.log('new jedi');
+	console.log('new jedi');
 }
 
 // bad
 Jedi.prototype = {
-    fight: function fight () {
-        console.log('fighting');
-    },
-    
-    block: function block () {
-        console.log('blocking');
-    }
+	fight: function fight () {
+		console.log('fighting');
+	},
+
+	block: function block () {
+		console.log('blocking');
+	}
 };
 ```
 
 ```javascript
 // good
 Jedi.prototype.fight = function fight () {
-    console.log('fighting');
+	console.log('fighting');
 };
 
 Jedi.prototype.block = function block () {
-    console.log('blocking');
+	console.log('blocking');
 };
 ```
 
@@ -1265,12 +1265,12 @@ Methods can return `this` to help with method chaining.
 ```javascript
 // bad
 Jedi.prototype.jump = function () {
-    this.jumping = true;
-    return true;
+	this.jumping = true;
+	return true;
 };
 
 Jedi.prototype.setHeight = function ( height ) {
-    this.height = height;
+	this.height = height;
 };
 
 var luke = new Jedi();
@@ -1281,19 +1281,19 @@ luke.setHeight(20) // => undefined
 ```javascript
 // good
 Jedi.prototype.jump = function () {
-    this.jumping = true;
-    return this;
+	this.jumping = true;
+	return this;
 };
 
 Jedi.prototype.setHeight = function ( height ) {
-    this.height = height;
-    return this;
+	this.height = height;
+	return this;
 };
 
 var luke = new Jedi();
 
 luke.jump()
-    .setHeight(20);
+	.setHeight(20);
 ```
 
 
@@ -1301,16 +1301,16 @@ It's okay to write a custom toString() method, just make sure it works successfu
 
 ```javascript
 function Jedi ( options ) {
-    options = options || {};
-    this.name = options.name || 'no name';
+	options = options || {};
+	this.name = options.name || 'no name';
 }
 
 Jedi.prototype.getName = function getName () {
-    return this.name;
+	return this.name;
 };
 
 Jedi.prototype.toString = function toString () {
-    return 'Jedi - ' + this.getName();
+	return 'Jedi - ' + this.getName();
 };
 ```
 
@@ -1326,7 +1326,7 @@ Pass a hash instead of a raw value in case there are more then one parameter.
 button.trigger('click', data1, data2, data3);
 
 button.on('click', function ( data1, data2, data3 ) {
-    // do something with arguments
+	// do something with arguments
 });
 ```
 
@@ -1335,7 +1335,7 @@ button.on('click', function ( data1, data2, data3 ) {
 button.trigger('click', value);
 
 button.on('click', function ( value ) {
-    // do something with value
+	// do something with value
 });
 ```
 
@@ -1344,7 +1344,7 @@ button.on('click', function ( value ) {
 button.trigger('click', {val1: data1, val2: data2, val3: data3});
 
 button.on('click', function ( data ) {
-    // do something with data.val1, data.val2 and data.val3
+	// do something with data.val1, data.val2 and data.val3
 });
 ```
 
@@ -1362,7 +1362,7 @@ button.on('click', function ( data ) {
 // not this good
 var paragraphs = document.getElementsByTagName('p');
 for ( var i = 0; i < paragraphs.length; i++ ) {
-    doSomething(paragraphs[i]);
+	doSomething(paragraphs[i]);
 }
 ```
 
@@ -1371,7 +1371,7 @@ This works well for all collections and arrays as long as the array does not con
 ```javascript
 var paragraphs = document.getElementsByTagName('p');
 for ( var i = 0, paragraph; paragraph = paragraphs[i]; i++ ) {
-    doSomething(paragraph);
+	doSomething(paragraph);
 }
 ```
 
@@ -1380,7 +1380,7 @@ In cases where you are iterating over the `childNodes` you can also use the `fir
 ```javascript
 var parentNode = document.getElementById('foo');
 for ( var child = parentNode.firstChild; child; child = child.nextSibling ) {
-    doSomething(child);
+	doSomething(child);
 }
 ```
 
@@ -1402,28 +1402,28 @@ The options for JSHint are stored in a .jshintrc file.
 
 ```json
 {
-    "indent"      : 4,
-    "bitwise"     : true,
-    "camelcase"   : true,
-    "curly"       : true,
-    "eqeqeq"      : true,
-    "forin"       : true,
-    "freeze"      : true,
-    "immed"       : true,
-    "latedef"     : true,
-    "newcap"      : true,
-    "noarg"       : true,
-    "noempty"     : true,
-    "nonew"       : true,
-    "undef"       : true,
-    "unused"      : true,
-    "globalstrict": true,
-    "trailing"    : true,
-    "quotmark"    : "single",
-    "browser"     : true,
-    "globals"     : {
-        "console" : false
-    }
+	"indent"      : 4,
+	"bitwise"     : true,
+	"camelcase"   : true,
+	"curly"       : true,
+	"eqeqeq"      : true,
+	"forin"       : true,
+	"freeze"      : true,
+	"immed"       : true,
+	"latedef"     : true,
+	"newcap"      : true,
+	"noarg"       : true,
+	"noempty"     : true,
+	"nonew"       : true,
+	"undef"       : true,
+	"unused"      : true,
+	"globalstrict": true,
+	"trailing"    : true,
+	"quotmark"    : "single",
+	"browser"     : true,
+	"globals"     : {
+		"console" : false
+	}
 }
 ```
 

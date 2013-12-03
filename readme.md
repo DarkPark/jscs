@@ -22,7 +22,10 @@ It is inspired by what is popular within the community, and flavored with some p
   1. [Accessors](#accessors)
   1. [Constructors](#constructors)
   1. [Events](#events)
+  1. [DOM](#dom)
   1. [Modules](#modules)
+  1. [Linting](#linting)
+  1. [Commits](#commits)
   1. [Resources](#resources)
 
 
@@ -85,6 +88,9 @@ for ( var key in obj ) {
     console.log(obj[key]);
 }
 ```
+
+Modifying prototypes of builtin objects should be avoided.
+> Modifying builtins like `Object.prototype` and `Array.prototype` are forbidden. Modifying other builtins like `Function.prototype` is less dangerous but still leads to hard to debug issues in production and should be avoided.
 
 
 ## <a name='arrays'>Arrays</a>
@@ -340,8 +346,7 @@ superPower = new SuperPower();
 var superPower = new SuperPower();
 ```
 
-Use one `var` declaration for multiple variables.  
-There should be only one `var` block for each scope.
+Use one `var` declaration for multiple variables in each scope.  
 
 ```javascript
 // bad
@@ -581,6 +586,19 @@ if ( isReady ) { return true; }
 Because of implicit semicolon insertion, always start your curly braces on the same line as whatever they're opening.
 
 ```javascript
+// bad
+if ( something )
+{
+    // ...
+}
+else
+{
+    // ...
+}
+```
+
+```javascript
+// good
 if ( something ) {
     // ...
 } else {
@@ -588,27 +606,28 @@ if ( something ) {
 }
 ```
 
+`with () { ... }` should be avoided.
+> Using with clouds the semantics of your program. Because the object of the with can have properties that collide with local variables, it can drastically change the meaning of your program.
+
 
 ## <a name='comments'>Comments</a>
 
-Use `/** ... */` for multiline comments and `//` (with a space) for single line comments.  
-For var/function/class declarations [JSDoc](http://usejsdoc.org/) should be used.
+Use `//` (with a trailing space) for both single line and multi line comments. Try to write comments that explain higher level mechanisms or clarify difficult segments of your code. Don't use comments to restate trivial things.
 
 ```javascript
 //bad
 
-// also
-// bad
+/////// also bad
 ```
 
 ```javascript
 // good
 
-/**
- * good
- * when there is a lot to comment
- */
+// good
+// when there is a lot to comment
 ```
+
+For var/function/class declarations [JSDoc](http://usejsdoc.org/) should be used.
 
 Use `//FIXME:` to annotate problems.
 > Helps other developers quickly understand if you're pointing out a problem that needs to be revisited.
@@ -651,6 +670,78 @@ function test () {
     var name;
 }
 ```
+
+No whitespace at the end of line or on blank lines.
+
+Add spaces between operators (`=`, `>`, `*`, etc).
+
+```javascript
+// bad
+if ( a>5 && b*8<345 ) { c=true; }
+```
+
+```javascript
+// good
+if ( a > 5 && b * 8 < 345 ) { c = true; }
+```
+
+Unary special-character operators (e.g., `!`, `++`) must not have space next to their operand.
+
+```javascript
+// bad
+if ( ! isReady ) { ... }
+```
+
+```javascript
+// good
+if ( !isReady ) { ... }
+```
+
+Any `,` and `;` must not have preceding space.
+
+```javascript
+// bad
+someCall(a , b , c) ;
+```
+
+```javascript
+// good
+someCall(a, b, c);
+```
+
+Any `;` used as a statement terminator must be at the end of the line.
+
+Any `:` after a property name in an object definition must not have preceding space.
+
+```javascript
+// bad
+var obj = {a : 1, b : 2, c : 3};
+```
+
+```javascript
+// good
+var obj = {a: 1, b: 2, c: 3};
+```
+
+The `?` and `:` in a ternary conditional must have space on both sides.
+
+```javascript
+// bad
+var flag = isReady?1:0;
+```
+
+```javascript
+// good
+var flag = isReady ? 1 : 0;
+
+// also good for long expressions
+var flag = isReady
+    ? someVeryLongEvaluatedOrSomethingElseValue
+    : anotherVeryLongEvaluatedOrSomethingElseValue;
+```
+
+No spaces in empty constructs like `{}`, `[]`.
+
 Place one space before the leading brace.
 
 ```javascript
@@ -1013,6 +1104,7 @@ var good = new User({
 If a value is intended to be constant and immutable, it should be given a name in `CONSTANT_VALUE_CASE`.
 
 ```javascript
+var SECOND = 1 * 1000;
 this.TIMEOUT_IN_MILLISECONDS = 60;
 ```
 
@@ -1029,7 +1121,7 @@ this.firstName_ = 'Panda';
 this._firstName = 'Panda';
 ```
 
-When saving a reference to `this` use `self`.
+When saving a reference to `this` use `self` or a corresponding meaningful name.
 
 ```javascript
 // bad
@@ -1049,9 +1141,18 @@ function () {
         console.log(self);
     };
 }
+
+// also good
+function () {
+    var parentFunc = this;
+    return function () {
+        console.log(parentFunc);
+    };
+}
 ```
 
-Name your functions. This is helpful for stack traces.
+Name your functions.
+> This will produce better stack traces, heap and cpu profiles.
 
 ```javascript
 // bad
@@ -1242,10 +1343,56 @@ button.on('click', function ( data ) {
 ```
 
 
+## <a name='dom'>DOM</a>
+
+`Element.nodeName` must always be used in favor of `Element.tagName`.
+
+`Element.nodeType` must be used to determine the classification of a node (not `Element.nodeName`).
+
+**Iterating over Node Lists.**
+> Node lists are often implemented as node iterators with a filter. This means that getting a property like length is O(n), and iterating over the list by re-checking the length will be O(n^2).
+
+```javascript
+// not this good
+var paragraphs = document.getElementsByTagName('p');
+for ( var i = 0; i < paragraphs.length; i++ ) {
+    doSomething(paragraphs[i]);
+}
+```
+
+This works well for all collections and arrays as long as the array does not contain things that are treated as boolean false.
+
+```javascript
+var paragraphs = document.getElementsByTagName('p');
+for ( var i = 0, paragraph; paragraph = paragraphs[i]; i++ ) {
+    doSomething(paragraph);
+}
+```
+
+In cases where you are iterating over the `childNodes` you can also use the `firstChild` and `nextSibling` properties.
+
+```javascript
+var parentNode = document.getElementById('foo');
+for ( var child = parentNode.firstChild; child; child = child.nextSibling ) {
+    doSomething(child);
+}
+```
+
+
 ## <a name='modules'>Modules</a>
 
 Use [CommonJS](http://wiki.commonjs.org/wiki/Modules) modules.
 [Browserify](http://browserify.org/), [Webmake](https://github.com/medikoo/modules-webmake) or similar are advised to bundle modules for web browsers.
+
+`eval()` is only for code loaders and in general should be avoided.
+> It makes for confusing semantics and is dangerous to use if the string being eval()'d contains user input. There's usually a better, clearer, and safer way to write your code, so its use is generally not permitted.
+
+
+## <a name='linting'>Linting</a>
+
+Use [JSHint](http://www.jshint.com/) to detect errors and potential problems.
+
+The options for JSHint are stored in a .jshintrc file.
 
 
 ## <a name='commits'>Commits</a>
@@ -1274,15 +1421,3 @@ Fix problem Y
 * [Google JavaScript Style Guide](http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml)
 * [jQuery JavaScript Style Guide](http://contribute.jquery.org/style-guide/js/)
 * [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
-
-
-
-`eval()` is only for code loaders.
-> It makes for confusing semantics and is dangerous to use if the string being eval()'d contains user input. There's usually a better, clearer, and safer way to write your code, so its use is generally not permitted.
-
-`with () { ... }` should be avoided.
-> Using with clouds the semantics of your program. Because the object of the with can have properties that collide with local variables, it can drastically change the meaning of your program.
-
-
-Modifying prototypes of builtin objects should be avoided.
-> Modifying builtins like `Object.prototype` and `Array.prototype` are forbidden. Modifying other builtins like `Function.prototype` is less dangerous but still leads to hard to debug issues in production and should be avoided.

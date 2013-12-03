@@ -137,6 +137,7 @@ function trigger() {
 
 Use simple iteration for big data. `forEach` approach looks better but good only for small arrays.
 > Anonymous iteration function call has a small cost but multiplied by millions gives bad results.
+
 ```javascript
 // good for large arrays
 var i, l = arr.length;

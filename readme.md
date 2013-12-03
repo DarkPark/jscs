@@ -1400,6 +1400,33 @@ Use [JSHint](http://www.jshint.com/) to detect errors and potential problems.
 
 The options for JSHint are stored in a .jshintrc file.
 
+```json
+{
+    "indent"      : 4,
+    "bitwise"     : true,
+    "camelcase"   : true,
+    "curly"       : true,
+    "eqeqeq"      : true,
+    "forin"       : true,
+    "freeze"      : true,
+    "immed"       : true,
+    "latedef"     : true,
+    "newcap"      : true,
+    "noarg"       : true,
+    "noempty"     : true,
+    "nonew"       : true,
+    "undef"       : true,
+    "unused"      : true,
+    "globalstrict": true,
+    "trailing"    : true,
+    "quotmark"    : "single",
+    "browser"     : true,
+    "globals"     : {
+        "console" : false
+    }
+}
+```
+
 
 ## <a name='commits'>Commits</a>
 

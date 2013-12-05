@@ -1410,7 +1410,7 @@ The options for JSHint are stored in a .jshintrc file.
 	"forin"       : true,
 	"freeze"      : true,
 	"immed"       : true,
-	"latedef"     : true,
+	"latedef"     : "nofunc",
 	"newcap"      : true,
 	"noarg"       : true,
 	"noempty"     : true,

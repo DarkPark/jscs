@@ -7,7 +7,7 @@
 	"forin"       : true,
 	"freeze"      : true,
 	"immed"       : true,
-	"latedef"     : true,
+	"latedef"     : "nofunc",
 	"newcap"      : true,
 	"noarg"       : true,
 	"noempty"     : true,
@@ -19,16 +19,6 @@
 	"quotmark"    : "single",
 	"browser"     : true,
 	"globals"     : {
-		"console"            : false,
-		"gSTB"               : false,
-		"stbWebWindow"       : false,
-		"stbWindowMgr"       : false,
-		"stbDownloadManager" : false,
-		"stbWildWebWindow"   : false,
-		"stbEvent"           : false,
-		"stbUpdate"          : false,
-		"pvrManager"         : false,
-		"timeShift"          : false,
-		"stbStorage"         : false
+		"console" : false
 	}
 }

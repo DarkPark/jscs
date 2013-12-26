@@ -1452,9 +1452,10 @@ Provide a brief description of the change in the first line.
 Insert a single blank line after the first line.
 Provide a detailed description of the change in the following lines, breaking paragraphs where needed.
 Put the 'Change-id', 'Closes-Bug #NNNNN' and similar lines at the very end.
+[More info](https://wiki.openstack.org/wiki/GitCommitMessages).
 
 ```
-Switch libvirt get_cpu_info method over to use config APIs
+switch libvirt get_cpu_info method over to use config APIs
 
 The get_cpu_info method in the libvirt driver currently uses
 XPath queries to extract information from the capabilities

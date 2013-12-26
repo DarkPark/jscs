@@ -1448,6 +1448,32 @@ Add feature X
 Fix problem Y
 ```
 
+Provide a brief description of the change in the first line.
+Insert a single blank line after the first line.
+Provide a detailed description of the change in the following lines, breaking paragraphs where needed.
+Put the 'Change-id', 'Closes-Bug #NNNNN' and similar lines at the very end.
+
+```
+Switch libvirt get_cpu_info method over to use config APIs
+
+The get_cpu_info method in the libvirt driver currently uses
+XPath queries to extract information from the capabilities
+XML document. Switch this over to use the new config class
+LibvirtConfigCaps. Also provide a test case to validate
+the data being returned.
+
+Closes-Bug: #1003373
+Implements: blueprint libvirt-xml-cpu-model
+Change-Id: I4946a16d27f712ae2adf8441ce78e6c0bb0bb657
+```
+
+All text files ending is [LF](https://help.github.com/articles/dealing-with-line-endings).
+
+```shell
+git config core.eol lf
+git config core.autocrlf input
+```
+
 
 ## <a name='resources'>Resources</a>
 

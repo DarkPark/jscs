@@ -1470,6 +1470,8 @@ Change-Id: I4946a16d27f712ae2adf8441ce78e6c0bb0bb657
 
 All text files line endings are [LF](https://help.github.com/articles/dealing-with-line-endings).
 
+on Linux and OS X
+
 ```shell
 # for a project
 git config core.eol lf
@@ -1478,6 +1480,18 @@ git config core.autocrlf input
 # or system-wide
 git config --global core.eol lf
 git config --global core.autocrlf input
+```
+
+on Windows
+
+```shell
+# for a project
+git config core.eol lf
+git config core.autocrlf true
+
+# or system-wide
+git config --global core.eol lf
+git config --global core.autocrlf true
 ```
 
 

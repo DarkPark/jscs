@@ -85,7 +85,9 @@ var superman = {
 ```javascript
 // only for objects (not arrays)
 for ( var key in obj ) {
-	console.log(obj[key]);
+	if ( obj.hasOwnProperty(key) ) {
+		console.log(obj[key]);
+	}
 }
 ```
 
@@ -293,6 +295,10 @@ function test ( veryLongArg1,
 	// ...
 }
 ```
+
+A function should have a singular purpose that is easily defined.
+Its size can vary but try to keep it in about 30-50 lines.
+
 
 ## <a name='properties'>Properties</a>
 
@@ -1044,6 +1050,7 @@ var hasAge = !!age;
 ## <a name='naming-conventions'>Naming Conventions</a>
 
 Avoid single letter names. Be descriptive with your naming.
+The only exception is well-known index variables `i`, `j` and similar.
 
 ```javascript
 // bad

@@ -1066,7 +1066,7 @@ function query () {
 }
 ```
 
-Use camelCase when naming objects, functions, and instances.
+Use [lowerCamelCase](http://en.wikipedia.org/wiki/CamelCase) when naming objects, functions, and instances.
 
 ```javascript
 // bad

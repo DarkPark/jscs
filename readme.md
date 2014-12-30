@@ -1406,9 +1406,10 @@ for ( i = 0, l = paragraphs.length; i < l; i++ ) {
 In cases where you are iterating over the `childNodes` you can also use the `firstChild` and `nextSibling` properties.
 
 ```js
-var parentNode = document.getElementById('foo');
+var parentNode = document.getElementById('foo'),
+	child;
 
-for ( var child = parentNode.firstChild; child; child = child.nextSibling ) {
+for ( child = parentNode.firstChild; child; child = child.nextSibling ) {
 	doSomething(child);
 }
 ```
@@ -1417,7 +1418,7 @@ for ( var child = parentNode.firstChild; child; child = child.nextSibling ) {
 ## <a name='modules'>Modules</a>
 
 Use [CommonJS](http://wiki.commonjs.org/wiki/Modules) modules.
-[Browserify](http://browserify.org/), [Webmake](https://github.com/medikoo/modules-webmake) or similar are advised to bundle modules for web browsers.
+[Browserify](http://browserify.org/), [Webpack](http://webpack.github.io/) or similar are advised to bundle modules for web browsers.
 
 `eval()` is only for code loaders and in general should be avoided.
 > It makes for confusing semantics and is dangerous to use if the string being eval()'d contains user input. There's usually a better, clearer, and safer way to write your code, so its use is generally not permitted.
@@ -1425,36 +1426,9 @@ Use [CommonJS](http://wiki.commonjs.org/wiki/Modules) modules.
 
 ## <a name='linting'>Linting</a>
 
-Use [JSHint](http://www.jshint.com/) to detect errors and potential problems.
+Use [ESLint](http://eslint.org/) to detect errors and potential problems.
 
-The options for JSHint are stored in a .jshintrc file.
-
-```json
-{
-	"indent"      : 4,
-	"bitwise"     : true,
-	"camelcase"   : true,
-	"curly"       : true,
-	"eqeqeq"      : true,
-	"forin"       : true,
-	"freeze"      : true,
-	"immed"       : true,
-	"latedef"     : "nofunc",
-	"newcap"      : true,
-	"noarg"       : true,
-	"noempty"     : true,
-	"nonew"       : true,
-	"undef"       : true,
-	"unused"      : true,
-	"globalstrict": true,
-	"trailing"    : true,
-	"quotmark"    : "single",
-	"browser"     : true,
-	"globals"     : {
-		"console" : false
-	}
-}
-```
+The options for JSHint are stored in a .eslintrc file.
 
 
 ## <a name='commits'>Commits</a>

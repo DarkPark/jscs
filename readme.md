@@ -1441,19 +1441,18 @@ Don't use Past or Present Continuous tenses for commit messages, those should be
 
 ```js
 // bad
-Added feature X
-Adding feature X
+added feature X
+adding feature X
 ```
 
 ```js
 // good
-Add feature X
-Fix problem Y
+add feature X
+fix problem Y
 ```
 
 Provide a brief description of the change in the first line.
-Insert a single blank line after the first line.
-Provide a detailed description of the change in the following lines, breaking paragraphs where needed.
+If necessary insert a single blank line after the first line and provide a detailed description of the change in the following lines, breaking paragraphs where needed.
 Put the 'Change-id', 'Closes-Bug #NNNNN' and similar lines at the very end.
 [More info](https://wiki.openstack.org/wiki/GitCommitMessages).
 

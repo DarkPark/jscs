@@ -50,17 +50,17 @@ Don't use [reserved words](http://es5.github.io/#x7.6.1) as keys.
 ```js
 // bad
 var superman = {
-	default: {clark: 'kent'},
-	private: true
-};
+		default: {clark: 'kent'},
+		private: true
+	};
 ```
 
 ```js
 // good
 var superman = {
-	defaults: {clark: 'kent'},
-	hidden: true
-};
+		defaults: {clark: 'kent'},
+		hidden: true
+	};
 ```
 
 Use readable synonyms in place of reserved words.
@@ -68,15 +68,15 @@ Use readable synonyms in place of reserved words.
 ```js
 // bad
 var superman = {
-	klass: 'alien'
-};
+		klass: 'alien'
+	};
 ```
 
 ```js
 // good
 var superman = {
-	type: 'alien'
-};
+		type: 'alien'
+	};
 ```
 
 `for-in` loop should be used only for iterating over keys in an object/map/hash.
@@ -138,6 +138,7 @@ Use simple iteration for big data. `forEach` approach looks better but good only
 ```js
 // good for large arrays
 var i, l = arr.length;
+
 for ( i = 0; i < l; i++ ) {
 	console.log(arr[i]);
 }
@@ -187,13 +188,15 @@ When programatically building up complicated strings, use [Array.join](https://d
 
 ```js
 // good
-var i, str = "";
+var i, str = '';
+
 for ( i = 30000; i > 0; i-- ) {
 	str += 'String concatenation. ';
 }
 
 // also good
 var i, str = '', sArr = [];
+
 for ( i = 30000; i > 0; i-- ) {
 	sArr.push('String concatenation.');
 }
@@ -208,13 +211,13 @@ Function expressions:
 ```js
 // anonymous function expression
 var anonymous = function () {
-	return true;
-};
+		return true;
+	};
 
 // named function expression
 var named = function named () {
-	return true;
-};
+		return true;
+	};
 
 // immediately-invoked function expression (IIFE)
 (function () {
@@ -235,6 +238,7 @@ if ( currentUser ) {
 
 // good
 var test;
+
 if ( currentUser ) {
 	test = function test () {
 		console.log('Yup.');
@@ -902,11 +906,11 @@ var once,
 
 // good
 var hero = {
-	firstName:  'Bob',
-	lastName:   'Parr',
-	heroName:   'Mr. Incredible',
-	superPower: 'strength'
-};
+		firstName:  'Bob',
+		lastName:   'Parr',
+		heroName:   'Mr. Incredible',
+		superPower: 'strength'
+	};
 ```
 
 No Additional trailing comma.
@@ -915,29 +919,29 @@ No Additional trailing comma.
 ```js
 // bad
 var hero = {
-	firstName: 'Kevin',
-	lastName: 'Flynn',
-};
+		firstName: 'Kevin',
+		lastName: 'Flynn',
+	};
 
 // bad
 var heroes = [
-	'Batman',
-	'Superman',
-];
+		'Batman',
+		'Superman',
+	];
 ```
 
 ```js
 // good
 var hero = {
-	firstName: 'Kevin',
-	lastName: 'Flynn'
-};
+		firstName: 'Kevin',
+		lastName: 'Flynn'
+	};
 
 // good
 var heroes = [
-	'Batman',
-	'Superman'
-];
+		'Batman',
+		'Superman'
+	];
 ```
 
 
@@ -974,8 +978,8 @@ Semicolons should be included at the end of function expressions, but not at the
 
 ```js
 var foo = function () {
-	return true;
-};  // semicolon here
+		return true;
+	};  // semicolon here
 
 function foo () {
 	return true;
@@ -1099,8 +1103,8 @@ function user ( options ) {
 }
 
 var bad = new user({
-	name: 'nope'
-});
+		name: 'nope'
+	});
 ```
 
 ```js
@@ -1110,8 +1114,8 @@ function User ( options ) {
 }
 
 var good = new User({
-	name: 'yup'
-});
+		name: 'yup'
+	});
 ```
 
 If a value is intended to be constant and immutable, it should be given a name in `CONSTANT_VALUE_CASE`.
@@ -1140,6 +1144,7 @@ When saving a reference to `this` use `self` or a corresponding meaningful name.
 // bad
 function () {
 	var that = this;
+
 	return function () {
 		console.log(that);
 	};
@@ -1150,6 +1155,7 @@ function () {
 // good
 function () {
 	var self = this;
+
 	return function () {
 		console.log(self);
 	};
@@ -1158,6 +1164,7 @@ function () {
 // also good
 function () {
 	var parentFunc = this;
+
 	return function () {
 		console.log(parentFunc);
 	};
@@ -1170,15 +1177,15 @@ Name your functions.
 ```js
 // bad
 var log = function ( msg ) {
-	console.log(msg);
-};
+		console.log(msg);
+	};
 ```
 
 ```js
 // good
 var log = function log ( msg ) {
-	console.log(msg);
-};
+		console.log(msg);
+	};
 ```
 
 Use leading `$` to indicate that a DOM element is assigned to this variable.

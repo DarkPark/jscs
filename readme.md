@@ -34,12 +34,12 @@ It is inspired by what is popular within the community, and flavored with some p
 Use the literal syntax for object creation.
 > Both ways do the same thing, but literal notation takes less space. It's clearly recognizable as to what is happening, so using `new object()`, is really just typing more.
 
-```javascript
+```js
 // bad
 var item = new Object();
 ```
 
-```javascript
+```js
 // good
 var item = {};
 ```
@@ -47,7 +47,7 @@ var item = {};
 Don't use [reserved words](http://es5.github.io/#x7.6.1) as keys.
 > It won't work in [IE8](https://github.com/airbnb/javascript/issues/61).
 
-```javascript
+```js
 // bad
 var superman = {
 	default: {clark: 'kent'},
@@ -55,7 +55,7 @@ var superman = {
 };
 ```
 
-```javascript
+```js
 // good
 var superman = {
 	defaults: {clark: 'kent'},
@@ -65,14 +65,14 @@ var superman = {
 
 Use readable synonyms in place of reserved words.
 
-```javascript
+```js
 // bad
 var superman = {
 	klass: 'alien'
 };
 ```
 
-```javascript
+```js
 // good
 var superman = {
 	type: 'alien'
@@ -82,7 +82,7 @@ var superman = {
 `for-in` loop should be used only for iterating over keys in an object/map/hash.
 > Such loops are often incorrectly used to loop over the elements in an Array. This is however very error prone because it does not loop from 0 to length - 1 but over all the present keys in the object and its prototype chain.
 
-```javascript
+```js
 // only for objects (not arrays)
 for ( var key in obj ) {
 	if ( obj.hasOwnProperty(key) ) {
@@ -100,37 +100,37 @@ Modifying prototypes of builtin objects should be avoided.
 Use the literal syntax for array creation.
 > `new Array(len)` creates an array with len holes. On some JavaScript engines, this operation lets you pre-allocate arrays, giving you performance benefits for small arrays (not for large ones). In most cases, performance doesn’t matter and you can avoid the redundancy introduced by a preallocation. If it fits the problem, an array literal initializing all elements at once is preferable.
 
-```javascript
+```js
 // bad
 var items = new Array();
 ```
 
-```javascript
+```js
 // good
 var items = [];
 ```
 
 To append some value to array use [Array.push](http://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push).
 
-```javascript
+```js
 // bad
 items[items.length] = 'abracadabra';
 ```
 
-```javascript
+```js
 // good
 itmes.push('abracadabra');
 ```
 
 When you need to copy an array use [Array.slice](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice).
 
-```javascript
+```js
 itemsCopy = items.slice();
 ```
 
 To convert an [array-like](http://www.2ality.com/2013/05/quirk-array-like-objects.html) object to an array, use it as well.
 
-```javascript
+```js
 function trigger() {
 	var args = Array.prototype.slice.call(arguments);
 	// ...
@@ -140,7 +140,7 @@ function trigger() {
 Use simple iteration for big data. `forEach` approach looks better but good only for small arrays.
 > Anonymous iteration function call has a small cost but multiplied by millions gives bad results.
 
-```javascript
+```js
 // good for large arrays
 var i, l = arr.length;
 for ( i = 0; i < l; i++ ) {
@@ -159,13 +159,13 @@ arr.forEach(function ( item ) {
 Use single quotes `''` for strings.
 > The difference between single and double quotes is that you don't need to escape single quotes in double quotes, or double quotes in single quotes. That is the only difference, if you do not count the fact that you must hold the Shift key to type `"`.
 
-```javascript
+```js
 // bad
 var name = "Bob Parr",
 	fullName = "Bob " + this.lastName;
 ```
 
-```javascript
+```js
 // good
 var name = 'Bob Parr',
 	fullName = 'Bob ' + this.lastName;
@@ -175,7 +175,7 @@ Strings longer than 100 characters should be written across multiple lines using
 > In general use of such long lines should be avoided. If overused, long strings with concatenation could impact performance.
 > [jsPerf](http://jsperf.com/ya-string-concat) & [Discussion](https://github.com/airbnb/javascript/issues/40).
 
-```javascript
+```js
 // good
 var errorMessage = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, \
 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \
@@ -190,7 +190,7 @@ var errorMessage = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, ' 
 When programatically building up complicated strings, use [Array.join](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join). String concatenation is good for simple cases.
 > Modern browsers are optimized to do string concatenations so performance is [not an issue](http://stackoverflow.com/questions/7299010/why-is-string-concatenation-faster-than-array-join) anymore.
 
-```javascript
+```js
 // good
 var i, str = "";
 for ( i = 30000; i > 0; i-- ) {
@@ -210,7 +210,7 @@ str = sArr.join(' ');
 
 Function expressions:
 
-```javascript
+```js
 // anonymous function expression
 var anonymous = function() {
 	return true;
@@ -230,7 +230,7 @@ var named = function named() {
 Never declare a function in a non-function block (`if`, `while`, etc).
 > Assign the function to a variable instead. Browsers will allow you to do it, but they all interpret it differently.
 
-```javascript
+```js
 // bad
 if ( currentUser ) {
 	function test () {
@@ -250,7 +250,7 @@ if ( currentUser ) {
 Never name a parameter `arguments`.
 > This will take precedence over the `arguments` object that is given to every function scope.
 
-```javascript
+```js
 // bad
 function nope ( name, options, arguments ) {
 	// ...
@@ -264,7 +264,7 @@ function yup ( name, options, args ) {
 
 When possible, all function arguments should be listed on the same line. If doing so would exceed the 100-column limit, the arguments must be line-wrapped in a readable way. To save space, you may wrap as close to 100 as possible, or put each argument on its own line to enhance readability. The indentation may be either one tab, or aligned to the parenthesis.
 
-```javascript
+```js
 // works with very long function names, survives renaming without reindenting
 some.name.space.withSomeVeryLongFunctionName = function (
 	veryLongArg1, veryLongArg2,
@@ -306,12 +306,12 @@ Use dot notation when accessing properties wherever possible.
 > Dot notation is faster to write and clearer to read.
 > Square bracket notation allows access to properties containing special characters and selection of properties using variables.
 
-```javascript
+```js
 // bad
 var data = items['pear'];
 ```
 
-```javascript
+```js
 // good
 var data = items.pear;
 
@@ -323,14 +323,14 @@ var name = 'pear',
 Delete properties with assigning to `null`.
 > In modern JavaScript engines, changing the number of properties on an object is much slower than reassigning the values. The delete keyword should be avoided except when it is necessary to remove a property from an object's iterated list of keys, or to change the result of `if ( key in obj )`.
 
-```javascript
+```js
 // think twice
 Foo.prototype.dispose = function () {
 	delete this.someProperty;
 };
 ```
 
-```javascript
+```js
 // good in most cases
 Foo.prototype.dispose = function () {
 	this.someProperty = null;
@@ -343,26 +343,26 @@ Foo.prototype.dispose = function () {
 Always use `var` to declare variables.
 > When you fail to specify var, the variable gets placed in the global context, potentially clobbering existing values. Also, if there's no declaration, it's hard to tell in what scope a variable lives (e.g., it could be in the Document or Window just as easily as in the local scope). So always declare with var.
 
-```javascript
+```js
 // bad
 superPower = new SuperPower();
 ```
 
-```javascript
+```js
 // good
 var superPower = new SuperPower();
 ```
 
 Use one `var` declaration for multiple variables in each scope.  
 
-```javascript
+```js
 // bad
 var items   = getItems();
 var isFresh = true;
 var topHtml = 'z';
 ```
 
-```javascript
+```js
 // good
 var items   = getItems(),
 	isFresh = true,
@@ -372,7 +372,7 @@ var items   = getItems(),
 Declare unassigned variables last.
 > This is helpful when later on you might need to assign a variable depending on one of the previous assigned variables.
 
-```javascript
+```js
 // bad
 var i, len,
 	items = getItems(),
@@ -380,7 +380,7 @@ var i, len,
 	dragonball;
 ```
 
-```javascript
+```js
 // good
 var items = getItems(),
 	goSportsTeam = true,
@@ -388,7 +388,7 @@ var items = getItems(),
 ```
 
 Group your vars by meaning and try to align them.
-```javascript
+```js
 var items = [],
 	goods = {},
 	maps  = null,
@@ -404,7 +404,7 @@ var items = [],
 Assign variables at the top of their scope.
 > This helps avoid issues with variable declaration and assignment hoisting related issues.
 
-```javascript
+```js
 // bad
 function nope () {
 	test();
@@ -421,7 +421,7 @@ function nope () {
 }
 ```
 
-```javascript
+```js
 // good
 function yep () {
 	var name = getName();
@@ -438,7 +438,7 @@ function yep () {
 }
 ```
 
-```javascript
+```js
 // bad
 function nope () {
 	var name = getName();
@@ -453,7 +453,7 @@ function nope () {
 }
 ```
 
-```javascript
+```js
 // good
 function yep () {
 	var name;
@@ -474,7 +474,7 @@ In complex cases use JavaScript native approach.
 > Variable and function declarations get hoisted to the top of their scope, their assignment does not.  
 > For more information refer to [JavaScript Scoping & Hoisting](http://www.adequatelygood.com/2010/2/JavaScript-Scoping-and-Hoisting)
 
-```javascript
+```js
 // bad
 function nope ( isReady ) {
 	if ( !isReady ) return;
@@ -496,7 +496,7 @@ function nope ( isReady ) {
 }
 ```
 
-```javascript
+```js
 // good
 function yep ( isReady ) {
 	var name, a, b, c;
@@ -527,14 +527,14 @@ Conditional expressions are evaluated using coercion with the `ToBoolean` method
 
 Use shortcuts.
 
-```javascript
+```js
 // bad
 if ( name !== '' && collection.length > 0 ) {
 	// ...
 }
 ```
 
-```javascript
+```js
 // good
 if ( name && collection.length ) {
 	// ...
@@ -543,7 +543,7 @@ if ( name && collection.length ) {
 
 Use simple single `if` for complex expressions.
 
-```javascript
+```js
 // bad
 if ( a === 1 ) {
 	if ( b === 2 ) {
@@ -559,7 +559,7 @@ if ( a === 1 ) {
 (a === 1) && (b === 2) && (a1 === 1) && (b1 === 2) && (c = 1);
 ```
 
-```javascript
+```js
 // good
 if ( a === 1 && b === 2 && a1 === 1 && b1 === 2 ) {
 	c = 1;
@@ -571,7 +571,7 @@ if ( a === 1 && b === 2 && a1 === 1 && b1 === 2 ) {
 
 Always use braces with all blocks.
 
-```javascript
+```js
 // bad
 if ( isReady )
 	return true;
@@ -580,7 +580,7 @@ if ( isReady )
 if ( isReady ) return true;
 ```
 
-```javascript
+```js
 // good
 if ( isReady ) {
 	return true;
@@ -592,7 +592,7 @@ if ( isReady ) { return true; }
 
 Because of implicit semicolon insertion, always start your curly braces on the same line as whatever they're opening.
 
-```javascript
+```js
 // bad
 if ( something )
 {
@@ -604,7 +604,7 @@ else
 }
 ```
 
-```javascript
+```js
 // good
 if ( something ) {
 	// ...
@@ -621,13 +621,13 @@ if ( something ) {
 
 Use `//` (with a trailing space) for both single line and multi line comments. Try to write comments that explain higher level mechanisms or clarify difficult segments of your code. Don't use comments to restate trivial things.
 
-```javascript
+```js
 //bad
 
 /////// also bad
 ```
 
-```javascript
+```js
 // good
 
 // good
@@ -643,7 +643,7 @@ For var/function/class declarations [JSDoc](http://usejsdoc.org/) should be used
 
 Use `//FIXME:` to annotate problems.
 > Helps other developers quickly understand if you're pointing out a problem that needs to be revisited.
-```javascript
+```js
 function build () {
 	//FIXME: shouldn't use a global here
 	total = 0;
@@ -652,7 +652,7 @@ function build () {
 
 Use `//TODO:` to annotate solutions to problems.
 > Helps other developers to see if you're suggesting a solution to the problem that needs to be implemented.
-```javascript
+```js
 function build () {
 	//TODO: total should be configurable by an options param
 	this.total = 0;
@@ -664,7 +664,7 @@ function build () {
 
 Use one single tab character for one-level indentation.
 
-```javascript
+```js
 // bad
 function test () {
 ∙∙∙∙var name;
@@ -676,7 +676,7 @@ function test () {
 }
 ```
 
-```javascript
+```js
 // good
 function test () {
 	var name;
@@ -687,36 +687,36 @@ No whitespace at the end of line or on blank lines.
 
 Add spaces between operators (`=`, `>`, `*`, etc).
 
-```javascript
+```js
 // bad
 if ( a>5 && b*8<345 ) { c=true; }
 ```
 
-```javascript
+```js
 // good
 if ( a > 5 && b * 8 < 345 ) { c = true; }
 ```
 
 Unary special-character operators (e.g., `!`, `++`) must not have space next to their operand.
 
-```javascript
+```js
 // bad
 if ( ! isReady ) { ... }
 ```
 
-```javascript
+```js
 // good
 if ( !isReady ) { ... }
 ```
 
 Any `,` and `;` must not have preceding space.
 
-```javascript
+```js
 // bad
 someCall(a , b , c) ;
 ```
 
-```javascript
+```js
 // good
 someCall(a, b, c);
 ```
@@ -725,24 +725,24 @@ Any `;` used as a statement terminator must be at the end of the line.
 
 Any `:` after a property name in an object definition must not have preceding space.
 
-```javascript
+```js
 // bad
 var obj = {a : 1, b : 2, c : 3};
 ```
 
-```javascript
+```js
 // good
 var obj = {a: 1, b: 2, c: 3};
 ```
 
 The `?` and `:` in a ternary conditional must have space on both sides.
 
-```javascript
+```js
 // bad
 var flag = isReady?1:0;
 ```
 
-```javascript
+```js
 // good
 var flag = isReady ? 1 : 0;
 
@@ -756,7 +756,7 @@ No spaces in empty constructs like `{}`, `[]`.
 
 Place one space before the leading brace.
 
-```javascript
+```js
 // bad
 function test(){
 	// ...
@@ -769,7 +769,7 @@ dog.set('attr',{
 });
 ```
 
-```javascript
+```js
 // good
 function test () {
 	// ...
@@ -784,7 +784,7 @@ dog.set('attr', {
 
 Separate function name and its parameters in declaration.
 
-```javascript
+```js
 // bad
 function test(){
 	// ...
@@ -796,7 +796,7 @@ function test(a, b){
 }
 ```
 
-```javascript
+```js
 // good
 function test ( a, b ) {
 	// ...
@@ -808,7 +808,7 @@ test(128, 'qwe');
 
 The same for `if`, `if/else`, `switch`, `try/catch` blocks.
 
-```javascript
+```js
 // bad
 if(isReady){
 	// ...
@@ -822,7 +822,7 @@ try{
 }
 ```
 
-```javascript
+```js
 // good
 if ( isReady ) {
 	// ...
@@ -841,12 +841,12 @@ Place an empty newline at the end of a file.
 
 Use line breaks and indentation when making long method chains.
 
-```javascript
+```js
 // bad
 $('#items').find('.selected').highlight().end().find('.open').updateCount();
 ```
 
-```javascript
+```js
 // good
 $('#items')
 	.find('.selected')
@@ -858,14 +858,14 @@ $('#items')
 
 Single-line array and object initializers are allowed when they fit on a line.
 
-```javascript
+```js
 var arr = [1, 2, 3];           // No space after [ or before ].
 var obj = {a: 1, b: 2, c: 3};  // No space after { or before }.
 ```
 
 Use newlines to group logically related pieces of code.
 
-```javascript
+```js
 doSomethingTo(x);
 doSomethingElseTo(x);
 andThen(x);
@@ -879,7 +879,7 @@ andNowWith(z);
 
 No Leading commas.
 
-```javascript
+```js
 // bad
 var once
 	, upon
@@ -894,7 +894,7 @@ var hero = {
 };
 ```
 
-```javascript
+```js
 // good
 var once,
 	upon,
@@ -912,7 +912,7 @@ var hero = {
 No Additional trailing comma.
 > This can cause problems with IE6/7 and IE9 if it's in quirksmode. Also, in some implementations of ES3 would add length to an array if it had an additional trailing comma. This was clarified in [ES5](http://es5.github.io/#D).
 
-```javascript
+```js
 // bad
 var hero = {
 	firstName: 'Kevin',
@@ -926,7 +926,7 @@ var heroes = [
 ];
 ```
 
-```javascript
+```js
 // good
 var hero = {
 	firstName: 'Kevin',
@@ -946,7 +946,7 @@ var heroes = [
 Semicolons use is mandatory.
 > Relying on [ASI](http://es5.github.io/#x7.9) (Automatic Semicolon Insertion) can cause subtle, hard to debug [problems](http://benalman.com/news/2013/01/advice-javascript-semicolon-haters/).
 
-```javascript
+```js
 // bad
 a = b + c
 test()
@@ -958,7 +958,7 @@ test()
 })()
 ```
 
-```javascript
+```js
 // good
 a = b + c;
 test();
@@ -972,7 +972,7 @@ test();
 
 Semicolons should be included at the end of function expressions, but not at the end of function declarations.
 
-```javascript
+```js
 var foo = function () {
 	return true;
 };  // semicolon here
@@ -987,7 +987,7 @@ function foo () {
 
 Perform type coercion at the beginning of the statement.
 
-```javascript
+```js
 // bad
 var totalScore = intValue + '';
 
@@ -995,7 +995,7 @@ var totalScore = intValue + '';
 var totalScore = '' + intValue + ' total score';
 ```
 
-```javascript
+```js
 // good
 var totalScore = '' + intValue;
 
@@ -1005,7 +1005,7 @@ var totalScore = intValue + ' total score';
 
 Use `parseInt` for Numbers and always with a radix for type casting.
 
-```javascript
+```js
 var inputValue = '4';
 
 // bad
@@ -1021,7 +1021,7 @@ var val = inputValue >> 0;
 var val = parseInt(inputValue);
 ```
 
-```javascript
+```js
 // good
 var val = Number(inputValue);
 
@@ -1031,14 +1031,14 @@ var val = parseInt(inputValue, 10);
 
 Booleans.
 
-```javascript
+```js
 var age = 0;
 
 // bad
 var hasAge = new Boolean(age);
 ```
 
-```javascript
+```js
 // good
 var hasAge = Boolean(age);
 
@@ -1052,14 +1052,14 @@ var hasAge = !!age;
 Avoid single letter names. Be descriptive with your naming.
 The only exception is well-known index variables `i`, `j` and similar.
 
-```javascript
+```js
 // bad
 function q () {
 	// ...
 }
 ```
 
-```javascript
+```js
 // good
 function query () {
 	// ...
@@ -1068,7 +1068,7 @@ function query () {
 
 Use [lowerCamelCase](http://en.wikipedia.org/wiki/CamelCase) when naming objects, functions, and instances.
 
-```javascript
+```js
 // bad
 var OBJEcttsssss = {};
 var this_is_my_object = {};
@@ -1078,7 +1078,7 @@ var u = new user({
 });
 ```
 
-```javascript
+```js
 // good
 var thisIsMyObject = {},
 	user = new User({
@@ -1092,7 +1092,7 @@ function thisIsMyFunction() {
 
 Use PascalCase when naming constructors or classes.
 
-```javascript
+```js
 // bad
 function user ( options ) {
 	this.name = options.name;
@@ -1103,7 +1103,7 @@ var bad = new user({
 });
 ```
 
-```javascript
+```js
 // good
 function User ( options ) {
 	this.name = options.name;
@@ -1116,27 +1116,27 @@ var good = new User({
 
 If a value is intended to be constant and immutable, it should be given a name in `CONSTANT_VALUE_CASE`.
 
-```javascript
+```js
 var SECOND = 1 * 1000;
 this.TIMEOUT_IN_MILLISECONDS = 60;
 ```
 
 Use a leading underscore `_` when naming private properties.
 
-```javascript
+```js
 // bad
 this.__firstName__ = 'Panda';
 this.firstName_ = 'Panda';
 ```
 
-```javascript
+```js
 // good
 this._firstName = 'Panda';
 ```
 
 When saving a reference to `this` use `self` or a corresponding meaningful name.
 
-```javascript
+```js
 // bad
 function () {
 	var that = this;
@@ -1146,7 +1146,7 @@ function () {
 }
 ```
 
-```javascript
+```js
 // good
 function () {
 	var self = this;
@@ -1167,14 +1167,14 @@ function () {
 Name your functions.
 > This will produce better stack traces, heap and cpu profiles.
 
-```javascript
+```js
 // bad
 var log = function ( msg ) {
 	console.log(msg);
 };
 ```
 
-```javascript
+```js
 // good
 var log = function log ( msg ) {
 	console.log(msg);
@@ -1183,13 +1183,13 @@ var log = function log ( msg ) {
 
 Use leading `$` to indicate that a DOM element is assigned to this variable.
 
-```javascript
+```js
 this.$body = document.querySelector('div.page');
 ```
 
 Use dot as a separator for filenames. Only lowercase allowed in order to avoid confusion on case-sensitive platforms. Filenames should contain no punctuation.
 
-```javascript
+```js
 // bad
 modelmain.js
 ModelMain.js
@@ -1205,13 +1205,13 @@ model.main.js
 
 Getters and setters methods for properties are not required. If you do make accessor functions use `getVal()` and `setVal('hello')`. It’s okay to create `get()` and `set()` functions, but be consistent.
 
-```javascript
+```js
 // bad
 dragon.age();    // getter
 dragon.age(25);  // setter
 ```
 
-```javascript
+```js
 // good
 dragon.getAge();
 dragon.setAge(25);
@@ -1219,14 +1219,14 @@ dragon.setAge(25);
 
 If the property is a boolean, use `isVal()` or `hasVal()`.
 
-```javascript
+```js
 // bad
 if ( !dragon.age() ) {
 	return false;
 }
 ```
 
-```javascript
+```js
 // good
 if ( !dragon.hasAge() ) {
 	return false;
@@ -1239,7 +1239,7 @@ if ( !dragon.hasAge() ) {
 Assign methods to the prototype object, instead of overwriting the prototype with a new object.
 > Overwriting the prototype makes inheritance impossible: by resetting the prototype you'll overwrite the base!
 
-```javascript
+```js
 function Jedi () {
 	console.log('new jedi');
 }
@@ -1256,7 +1256,7 @@ Jedi.prototype = {
 };
 ```
 
-```javascript
+```js
 // good
 Jedi.prototype.fight = function fight () {
 	console.log('fighting');
@@ -1269,7 +1269,7 @@ Jedi.prototype.block = function block () {
 
 Methods can return `this` to help with method chaining.
 
-```javascript
+```js
 // bad
 Jedi.prototype.jump = function () {
 	this.jumping = true;
@@ -1285,7 +1285,7 @@ luke.jump(); // => true
 luke.setHeight(20) // => undefined
 ```
 
-```javascript
+```js
 // good
 Jedi.prototype.jump = function () {
 	this.jumping = true;
@@ -1306,7 +1306,7 @@ luke.jump()
 
 It's okay to write a custom toString() method, just make sure it works successfully and causes no side effects.
 
-```javascript
+```js
 function Jedi ( options ) {
 	options = options || {};
 	this.name = options.name || 'no name';
@@ -1328,7 +1328,7 @@ When attaching data to events it's always should be only one parameter.
 Pass a hash instead of a raw value in case there are more then one parameter.
 > This approach allows `EventEmitter` implementation with better performance.
 
-```javascript
+```js
 // bad
 button.trigger('click', data1, data2, data3);
 
@@ -1337,7 +1337,7 @@ button.on('click', function ( data1, data2, data3 ) {
 });
 ```
 
-```javascript
+```js
 // good
 button.trigger('click', value);
 
@@ -1346,7 +1346,7 @@ button.on('click', function ( value ) {
 });
 ```
 
-```javascript
+```js
 // good
 button.trigger('click', {val1: data1, val2: data2, val3: data3});
 
@@ -1365,7 +1365,7 @@ button.on('click', function ( data ) {
 **Iterating over Node Lists.**
 > Node lists are often implemented as node iterators with a filter. This means that getting a property like length is O(n), and iterating over the list by re-checking the length will be O(n^2).
 
-```javascript
+```js
 // not this good
 var paragraphs = document.getElementsByTagName('p');
 for ( var i = 0; i < paragraphs.length; i++ ) {
@@ -1375,7 +1375,7 @@ for ( var i = 0; i < paragraphs.length; i++ ) {
 
 This works well for all collections and arrays as long as the array does not contain things that are treated as boolean false.
 
-```javascript
+```js
 var paragraphs = document.getElementsByTagName('p');
 for ( var i = 0, paragraph; paragraph = paragraphs[i]; i++ ) {
 	doSomething(paragraph);
@@ -1384,7 +1384,7 @@ for ( var i = 0, paragraph; paragraph = paragraphs[i]; i++ ) {
 
 In cases where you are iterating over the `childNodes` you can also use the `firstChild` and `nextSibling` properties.
 
-```javascript
+```js
 var parentNode = document.getElementById('foo');
 for ( var child = parentNode.firstChild; child; child = child.nextSibling ) {
 	doSomething(child);
@@ -1443,13 +1443,13 @@ Every commit message, pull request title or issue discussion must be in English.
 Don't use Past or Present Continuous tenses for commit messages, those should be in Imperative Present tense.
 > This preference comes from [Git itself](http://git.kernel.org/cgit/git/git.git/tree/Documentation/SubmittingPatches?id=HEAD#n111).
 
-```javascript
+```js
 // bad
 Added feature X
 Adding feature X
 ```
 
-```javascript
+```js
 // good
 Add feature X
 Fix problem Y

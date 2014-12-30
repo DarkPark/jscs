@@ -1176,16 +1176,16 @@ Name your functions.
 
 ```js
 // bad
-var log = function ( msg ) {
-		console.log(msg);
-	};
+getData(function ( data ) {
+	console.log(data);
+});
 ```
 
 ```js
 // good
-var log = function log ( msg ) {
-		console.log(msg);
-	};
+getData(function getDataCallback ( data ) {
+	console.log(data);
+});
 ```
 
 Use leading `$` to indicate that a DOM element is assigned to this variable.

@@ -541,22 +541,6 @@ Conditional expressions are evaluated using coercion with the `ToBoolean` method
 + `Numbers` evaluate to `false` if `+0`, `-0`, or `NaN`, otherwise `true`
 + `Strings` evaluate to `false` if an empty string `''`, otherwise `true`
 
-Use shortcuts.
-
-```js
-// bad
-if ( name !== '' && collection.length > 0 ) {
-	// ...
-}
-```
-
-```js
-// good
-if ( name && collection.length ) {
-	// ...
-}
-```
-
 Use simple single `if` for complex expressions.
 
 ```js

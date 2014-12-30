@@ -110,15 +110,10 @@ var items = new Array();
 var items = [];
 ```
 
-To append some value to array use [Array.push](http://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push).
+To append some value to array use [Array.push](http://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push) or direct access.
 
 ```js
-// bad
 items[items.length] = 'abracadabra';
-```
-
-```js
-// good
 itmes.push('abracadabra');
 ```
 
@@ -212,17 +207,17 @@ Function expressions:
 
 ```js
 // anonymous function expression
-var anonymous = function() {
+var anonymous = function () {
 	return true;
 };
 
 // named function expression
-var named = function named() {
+var named = function named () {
 	return true;
 };
 
 // immediately-invoked function expression (IIFE)
-(function() {
+(function () {
 	return true;
 })();
 ```
@@ -467,6 +462,27 @@ function yep () {
 	// ...
 
 	return true;
+}
+```
+
+Separate variable declaration from code. This will improve readability.
+
+```js
+// bad
+function hasName () {
+	var name = getName();
+	name = name.trim();
+	return name !== '';
+}
+```
+
+```js
+// good
+function hasName () {
+	var name = getName();
+
+	name = name.trim();
+	return name !== '';
 }
 ```
 

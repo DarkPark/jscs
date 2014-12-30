@@ -1199,6 +1199,7 @@ Use dot as a separator for filenames. Only lowercase allowed in order to avoid c
 ```js
 // bad
 modelmain.js
+modelMain.js
 ModelMain.js
 model_main.js
 model-main.js
@@ -1210,7 +1211,7 @@ model.main.js
 
 ## <a name='accessors'>Accessors</a>
 
-Getters and setters methods for properties are not required. If you do make accessor functions use `getVal()` and `setVal('hello')`. It’s okay to create `get()` and `set()` functions, but be consistent.
+Getters and setters methods for properties are not strictly required. If you do make accessor functions use `getVal()` and `setVal('hello')`. It’s okay to create `get()` and `set()` functions, but be consistent.
 
 ```js
 // bad
@@ -1374,8 +1375,10 @@ button.on('click', function ( data ) {
 
 ```js
 // not this good
-var paragraphs = document.getElementsByTagName('p');
-for ( var i = 0; i < paragraphs.length; i++ ) {
+var paragraphs = document.getElementsByTagName('p'),
+	i;
+
+for ( i = 0; i < paragraphs.length; i++ ) {
 	doSomething(paragraphs[i]);
 }
 ```
@@ -1383,9 +1386,20 @@ for ( var i = 0; i < paragraphs.length; i++ ) {
 This works well for all collections and arrays as long as the array does not contain things that are treated as boolean false.
 
 ```js
-var paragraphs = document.getElementsByTagName('p');
-for ( var i = 0, paragraph; paragraph = paragraphs[i]; i++ ) {
+// good
+var paragraphs = document.getElementsByTagName('p'),
+	i;
+
+for ( i = 0, paragraph; paragraph = paragraphs[i]; i++ ) {
 	doSomething(paragraph);
+}
+
+// also good
+var paragraphs = document.getElementsByTagName('p'),
+	i, l;
+
+for ( i = 0, l = paragraphs.length; i < l; i++ ) {
+	doSomething(paragraphs[i]);
 }
 ```
 
@@ -1393,6 +1407,7 @@ In cases where you are iterating over the `childNodes` you can also use the `fir
 
 ```js
 var parentNode = document.getElementById('foo');
+
 for ( var child = parentNode.firstChild; child; child = child.nextSibling ) {
 	doSomething(child);
 }

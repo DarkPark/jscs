@@ -70,6 +70,7 @@
 
 		"no-delete-var": 1,
 		"no-label-var": 1,
+		"no-shadow": 0,
 		"no-shadow-restricted-names": 1,
 		"no-undef": 1,
 		"no-undefined": 0,
@@ -102,6 +103,7 @@
 		"quote-props": [1, "as-needed"],
 		"quotes": [1, "single", "avoid-escape"],
 		"semi": [1, "always"],
+		"space-after-function-name": [1, "always"],
 		"space-after-keywords": [1, "always"],
 		"space-before-blocks": [1, "always"],
 		"space-in-brackets": [1, "never"],

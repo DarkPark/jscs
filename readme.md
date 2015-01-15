@@ -137,7 +137,8 @@ Use simple iteration for big data. `forEach` approach looks better but good only
 
 ```js
 // good for large arrays
-var i, l = arr.length;
+var l = arr.length,
+	i;
 
 for ( i = 0; i < l; i++ ) {
 	console.log(arr[i]);
@@ -147,6 +148,16 @@ for ( i = 0; i < l; i++ ) {
 arr.forEach(function ( item ) {
 	console.log(arr[i]);
 });
+```
+
+There is also an alternative more compact way to iterate arrays.
+
+```js
+var i = arr.length;
+
+while ( i-- ) {
+	console.log(arr[i]);
+}
 ```
 
 

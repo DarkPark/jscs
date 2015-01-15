@@ -150,7 +150,8 @@ arr.forEach(function ( item ) {
 });
 ```
 
-There is also an alternative more compact way to iterate arrays.
+There is also an alternative way to iterate arrays.
+> It's more compact and has [about the same speed](http://jsperf.com/for-until-length-vs-until-undefined/9) as simple `forEach`.
 
 ```js
 var i = arr.length;

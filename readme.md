@@ -1,35 +1,38 @@
-# JavaScript Code Style
+JavaScript Code Style
+=====================
+
 
 This is a guide for writing consistent and aesthetically pleasing JavaScript code.
 It is inspired by what is popular within the community, and flavored with some personal opinions.
 
-## <a name='TOC'>Table of Contents</a>
 
-  1. [Objects](#objects)
-  1. [Arrays](#arrays)
-  1. [Strings](#strings)
-  1. [Functions](#functions)
-  1. [Properties](#properties)
-  1. [Variables](#variables)
-  1. [Conditional Expressions & Equality](#conditionals)
-  1. [Blocks](#blocks)
-  1. [Comments](#comments)
-  1. [Whitespaces](#whitespaces)
-  1. [Commas](#commas)
-  1. [Semicolons](#semicolons)
-  1. [Type Casting & Coercion](#type-coercion)
-  1. [Naming Conventions](#naming-conventions)
-  1. [Accessors](#accessors)
-  1. [Constructors](#constructors)
-  1. [Events](#events)
-  1. [DOM](#dom)
-  1. [Modules](#modules)
-  1. [Linting](#linting)
-  1. [Commits](#commits)
-  1. [Resources](#resources)
+## Table of Contents
+
+1. [Objects](#objects)
+1. [Arrays](#arrays)
+1. [Strings](#strings)
+1. [Functions](#functions)
+1. [Properties](#properties)
+1. [Variables](#variables)
+1. [Conditional Expressions & Equality](#conditional-expressions--equality)
+1. [Blocks](#blocks)
+1. [Comments](#comments)
+1. [Whitespaces](#whitespaces)
+1. [Commas](#commas)
+1. [Semicolons](#semicolons)
+1. [Type Casting & Coercion](#type-casting--coercion)
+1. [Naming Conventions](#naming-conventions)
+1. [Accessors](#accessors)
+1. [Constructors](#constructors)
+1. [Events](#events)
+1. [DOM](#dom)
+1. [Modules](#modules)
+1. [Linting](#linting)
+1. [Commits](#commits)
+1. [Resources](#resources)
 
 
-## <a name='objects'>Objects</a>
+## Objects ##
 
 Use the literal syntax for object creation.
 > Both ways do the same thing, but literal notation takes less space. It's clearly recognizable as to what is happening, so using `new object()`, is really just typing more.
@@ -95,7 +98,7 @@ Modifying prototypes of builtin objects should be avoided.
 > Modifying builtins like `Object.prototype` and `Array.prototype` are forbidden. Modifying other builtins like `Function.prototype` is less dangerous but still leads to hard to debug issues in production and should be avoided.
 
 
-## <a name='arrays'>Arrays</a>
+## Arrays ##
 
 Use the literal syntax for array creation.
 > `new Array(len)` creates an array with len holes. On some JavaScript engines, this operation lets you pre-allocate arrays, giving you performance benefits for small arrays (not for large ones). In most cases, performance doesn’t matter and you can avoid the redundancy introduced by a preallocation. If it fits the problem, an array literal initializing all elements at once is preferable.
@@ -162,7 +165,7 @@ while ( i-- ) {
 ```
 
 
-## <a name='strings'>Strings</a>
+## Strings ##
 
 Use single quotes `''` for strings.
 > The difference between single and double quotes is that you don't need to escape single quotes in double quotes, or double quotes in single quotes. That is the only difference, if you do not count the fact that you must hold the Shift key to type `"`.
@@ -216,7 +219,7 @@ str = sArr.join(' ');
 ```
 
 
-## <a name='functions'>Functions</a>
+## Functions ##
 
 Function expressions:
 
@@ -311,7 +314,7 @@ A function should have a singular purpose that is easily defined.
 Its size can vary but try to keep it in about 30-50 lines.
 
 
-## <a name='properties'>Properties</a>
+## Properties ##
 
 Use dot notation when accessing properties wherever possible.
 > Dot notation is faster to write and clearer to read.
@@ -349,7 +352,7 @@ Foo.prototype.dispose = function () {
 ```
 
 
-## <a name='variables'>Variables</a>
+## Variables ##
 
 Always use `var` to declare variables.
 > When you fail to specify var, the variable gets placed in the global context, potentially clobbering existing values. Also, if there's no declaration, it's hard to tell in what scope a variable lives (e.g., it could be in the Document or Window just as easily as in the local scope). So always declare with var.
@@ -542,7 +545,7 @@ function yep ( isReady ) {
 ```
 
 
-## <a name='conditionals'>Conditional Expressions & Equality</a>
+## Conditional Expressions & Equality ##
 
 Use `===` and `!==` over `==` and `!=`.
 > This helps to maintain data type integrity throughout your code and has a better performance.  
@@ -583,7 +586,7 @@ if ( a === 1 && b === 2 && a1 === 1 && b1 === 2 ) {
 ```
 
 
-## <a name='blocks'>Blocks</a>
+## Blocks ##
 
 Always use braces with all blocks.
 
@@ -633,7 +636,7 @@ if ( something ) {
 > Using with clouds the semantics of your program. Because the object of the with can have properties that collide with local variables, it can drastically change the meaning of your program.
 
 
-## <a name='comments'>Comments</a>
+## Comments ##
 
 Use `//` (with a trailing space) for both single line and multi line comments. Try to write comments that explain higher level mechanisms or clarify difficult segments of your code. Don't use comments to restate trivial things.
 
@@ -676,7 +679,7 @@ function build () {
 ```
 
 
-## <a name='whitespaces'>Whitespaces</a>
+## Whitespaces ##
 
 Use one single tab character for one-level indentation.
 
@@ -891,7 +894,8 @@ nowDoSomethingWith(y);
 andNowWith(z);
 ```
 
-## <a name='commas'>Commas</a>
+
+## Commas ##
 
 No Leading commas.
 
@@ -957,7 +961,7 @@ var heroes = [
 ```
 
 
-## <a name='semicolons'>Semicolons</a>
+## Semicolons ##
 
 Semicolons use is mandatory.
 > Relying on [ASI](http://es5.github.io/#x7.9) (Automatic Semicolon Insertion) can cause subtle, hard to debug [problems](http://benalman.com/news/2013/01/advice-javascript-semicolon-haters/).
@@ -999,7 +1003,7 @@ function foo () {
 ```
 
 
-## <a name='type-coercion'>Type Casting & Coercion</a>
+## Type Casting & Coercion ##
 
 Perform type coercion at the beginning of the statement.
 
@@ -1063,7 +1067,7 @@ var hasAge = !!age;
 ```
 
 
-## <a name='naming-conventions'>Naming Conventions</a>
+## Naming Conventions ##
 
 Avoid single letter names. Be descriptive with your naming.
 The only exception is well-known index variables `i`, `j` and similar.
@@ -1221,7 +1225,8 @@ model main.js
 model.main.js
 ```
 
-## <a name='accessors'>Accessors</a>
+
+## Accessors ##
 
 Getters and setters methods for properties are not strictly required. If you do make accessor functions use `getVal()` and `setVal('hello')`. It’s okay to create `get()` and `set()` functions, but be consistent.
 
@@ -1254,7 +1259,7 @@ if ( !dragon.hasAge() ) {
 ```
 
 
-## <a name='constructors'>Constructors</a>
+## Constructors ##
 
 Assign methods to the prototype object, instead of overwriting the prototype with a new object.
 > Overwriting the prototype makes inheritance impossible: by resetting the prototype you'll overwrite the base!
@@ -1342,7 +1347,7 @@ Jedi.prototype.toString = function toString () {
 ```
 
 
-## <a name='events'>Events</a>
+## Events ##
 
 When attaching data to events it's always should be only one parameter.
 Pass a hash instead of a raw value in case there are more then one parameter.
@@ -1376,7 +1381,7 @@ button.on('click', function ( data ) {
 ```
 
 
-## <a name='dom'>DOM</a>
+## DOM ##
 
 `Element.nodeName` must always be used in favor of `Element.tagName`.
 
@@ -1427,7 +1432,7 @@ for ( child = parentNode.firstChild; child; child = child.nextSibling ) {
 ```
 
 
-## <a name='modules'>Modules</a>
+## Modules ##
 
 Use [CommonJS](http://wiki.commonjs.org/wiki/Modules) modules.
 [Browserify](http://browserify.org/), [Webpack](http://webpack.github.io/) or similar are advised to bundle modules for web browsers.
@@ -1436,14 +1441,14 @@ Use [CommonJS](http://wiki.commonjs.org/wiki/Modules) modules.
 > It makes for confusing semantics and is dangerous to use if the string being eval()'d contains user input. There's usually a better, clearer, and safer way to write your code, so its use is generally not permitted.
 
 
-## <a name='linting'>Linting</a>
+## Linting ##
 
 Use [ESLint](http://eslint.org/) to detect errors and potential problems.
 
 The options for JSHint are stored in the [.eslintrc.json](https://github.com/DarkPark/jscs/blob/master/.eslintrc.json) example file.
 
 
-## <a name='commits'>Commits</a>
+## Commits ##
 
 Every commit message, pull request title or issue discussion must be in English.
 > English is the universal language nowadays, if you use any other language you're excluding potencial contributors.
@@ -1509,7 +1514,7 @@ git config --global core.autocrlf true
 ```
 
 
-## <a name='resources'>Resources</a>
+## Resources ##
 
 * [Google JavaScript Style Guide](http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml)
 * [jQuery JavaScript Style Guide](http://contribute.jquery.org/style-guide/js/)

@@ -1440,7 +1440,7 @@ Use [CommonJS](http://wiki.commonjs.org/wiki/Modules) modules.
 
 Use [ESLint](http://eslint.org/) to detect errors and potential problems.
 
-The options for JSHint are stored in the [.eslintrc](https://github.com/DarkPark/jscs/blob/master/.eslintrc) example file.
+The options for JSHint are stored in the [.eslintrc.json](https://github.com/DarkPark/jscs/blob/master/.eslintrc.json) example file.
 
 
 ## <a name='commits'>Commits</a>

@@ -88,7 +88,7 @@
         "no-labels": 2,
         "no-lone-blocks": 2,
         "no-loop-func": 2,
-        "no-magic-numbers": [2, {"ignoreArrayIndexes": true}],
+        "no-magic-numbers": 0,
         "no-multi-spaces": 0,
         "no-multi-str": 0,
         "no-native-reassign": 2,

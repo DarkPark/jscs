@@ -134,7 +134,7 @@
         "no-unused-vars": [2, {"vars": "all", "args": "after-used"}],
         "no-use-before-define": [2, {"functions": true, "classes": true}],
 
-        "callback-return": [1, ["callback", "cb", "done", "next"]],
+        "callback-return": 0,
         "global-require": 0,
         "handle-callback-err": [1, "error"],
         "no-mixed-requires": 0,

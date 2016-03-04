@@ -35,7 +35,7 @@ It is inspired by what is popular within the community, and flavored with some p
 ## Objects ##
 
 Use the literal syntax for object creation.
-> Both ways do the same thing, but literal notation takes less space. It's clearly recognizable as to what is happening, so using `new object()`, is really just typing more.
+> Both ways do the same thing, but literal notation takes less space. It's clearly recognizable as to what is happening, so using `new Object()`, is really just typing more.
 
 ```js
 // bad

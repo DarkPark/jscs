@@ -1484,9 +1484,9 @@ XML document. Switch this over to use the new config class
 LibvirtConfigCaps. Also provide a test case to validate
 the data being returned.
 
-Closes-Bug: #1003373
-Implements: blueprint libvirt-xml-cpu-model
-Change-Id: I4946a16d27f712ae2adf8441ce78e6c0bb0bb657
+redmine: #1003373
+implements: blueprint libvirt-xml-cpu-model
+change-id: I4946a16d27f712ae2adf8441ce78e6c0bb0bb657
 ```
 
 All text files line endings are [LF](https://help.github.com/articles/dealing-with-line-endings).

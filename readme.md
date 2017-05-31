@@ -35,6 +35,7 @@ It is inspired by what is popular within the community, and flavored with some p
 ## Objects ##
 
 Use the literal syntax for object creation.
+
 > Both ways do the same thing, but literal notation takes less space. It's clearly recognizable as to what is happening, so using `new Object()`, is really just typing more.
 
 ```js
@@ -48,6 +49,7 @@ var item = {};
 ```
 
 Don't use [reserved words](http://es5.github.io/#x7.6.1) as keys.
+
 > It won't work in [IE8](https://github.com/airbnb/javascript/issues/61).
 
 ```js
@@ -83,6 +85,7 @@ var superman = {
 ```
 
 `for-in` loop should be used only for iterating over keys in an object/map/hash.
+
 > Such loops are often incorrectly used to loop over the elements in an Array. This is however very error prone because it does not loop from 0 to length - 1 but over all the present keys in the object and its prototype chain.
 
 ```js
@@ -95,12 +98,14 @@ for ( var key in obj ) {
 ```
 
 Modifying prototypes of builtin objects should be avoided.
+
 > Modifying builtins like `Object.prototype` and `Array.prototype` are forbidden. Modifying other builtins like `Function.prototype` is less dangerous but still leads to hard to debug issues in production and should be avoided.
 
 
 ## Arrays ##
 
 Use the literal syntax for array creation.
+
 > `new Array(len)` creates an array with len holes. On some JavaScript engines, this operation lets you pre-allocate arrays, giving you performance benefits for small arrays (not for large ones). In most cases, performance doesn’t matter and you can avoid the redundancy introduced by a preallocation. If it fits the problem, an array literal initializing all elements at once is preferable.
 
 ```js
@@ -136,6 +141,7 @@ function trigger() {
 ```
 
 Use simple iteration for big data. `forEach` approach looks better but good only for small arrays.
+
 > Anonymous iteration function call has a small cost but multiplied by millions gives bad results.
 
 ```js
@@ -154,6 +160,7 @@ arr.forEach(function ( item ) {
 ```
 
 There is also an alternative way to iterate arrays.
+
 > It's more compact and has [about the same speed](http://jsperf.com/for-until-length-vs-until-undefined/9) as simple `forEach`.
 
 ```js
@@ -168,6 +175,7 @@ while ( i-- ) {
 ## Strings ##
 
 Use single quotes `''` for strings.
+
 > The difference between single and double quotes is that you don't need to escape single quotes in double quotes, or double quotes in single quotes. That is the only difference, if you do not count the fact that you must hold the Shift key to type `"`.
 
 ```js
@@ -183,6 +191,7 @@ var name = 'Bob Parr',
 ```
 
 Strings longer than 100 characters should be written across multiple lines using string concatenation.
+
 > In general use of such long lines should be avoided. If overused, long strings with concatenation could impact performance.
 > [jsPerf](http://jsperf.com/ya-string-concat) & [Discussion](https://github.com/airbnb/javascript/issues/40).
 
@@ -199,6 +208,7 @@ var errorMessage = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, ' 
 ```
 
 When programatically building up complicated strings, use [Array.join](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join). String concatenation is good for simple cases.
+
 > Modern browsers are optimized to do string concatenations so performance is [not an issue](http://stackoverflow.com/questions/7299010/why-is-string-concatenation-faster-than-array-join) anymore.
 
 ```js
@@ -241,6 +251,7 @@ var named = function named () {
 ```
 
 Never declare a function in a non-function block (`if`, `while`, etc).
+
 > Assign the function to a variable instead. Browsers will allow you to do it, but they all interpret it differently.
 
 ```js
@@ -262,6 +273,7 @@ if ( currentUser ) {
 ```
 
 Never name a parameter `arguments`.
+
 > This will take precedence over the `arguments` object that is given to every function scope.
 
 ```js
@@ -317,6 +329,7 @@ Its size can vary but try to keep it in about 30-50 lines.
 ## Properties ##
 
 Use dot notation when accessing properties wherever possible.
+
 > Dot notation is faster to write and clearer to read.
 > Square bracket notation allows access to properties containing special characters and selection of properties using variables.
 
@@ -335,6 +348,7 @@ var name = 'pear',
 ```
 
 Delete properties with assigning to `null`.
+
 > In modern JavaScript engines, changing the number of properties on an object is much slower than reassigning the values. The delete keyword should be avoided except when it is necessary to remove a property from an object's iterated list of keys, or to change the result of `if ( key in obj )`.
 
 ```js
@@ -355,6 +369,7 @@ Foo.prototype.dispose = function () {
 ## Variables ##
 
 Always use `var` to declare variables.
+
 > When you fail to specify var, the variable gets placed in the global context, potentially clobbering existing values. Also, if there's no declaration, it's hard to tell in what scope a variable lives (e.g., it could be in the Document or Window just as easily as in the local scope). So always declare with var.
 
 ```js
@@ -384,6 +399,7 @@ var items   = getItems(),
 ```
 
 Declare unassigned variables last.
+
 > This is helpful when later on you might need to assign a variable depending on one of the previous assigned variables.
 
 ```js
@@ -402,6 +418,7 @@ var items = getItems(),
 ```
 
 Group your vars by meaning and try to align them.
+
 ```js
 var items = [],
     goods = {},
@@ -416,6 +433,7 @@ var items = [],
 ```
 
 Assign variables at the top of their scope.
+
 > This helps avoid issues with variable declaration and assignment hoisting related issues.
 
 ```js
@@ -506,13 +524,16 @@ function hasName () {
 ```
 
 In complex cases use JavaScript native approach.
+
 > Variable and function declarations get hoisted to the top of their scope, their assignment does not.
 > For more information refer to [JavaScript Scoping & Hoisting](http://www.adequatelygood.com/2010/2/JavaScript-Scoping-and-Hoisting)
 
 ```js
 // bad
 function nope ( isReady ) {
-    if ( !isReady ) return;
+    if ( !isReady ) {
+        return;
+    }
 
     var name = getName(),
         a, b, c;
@@ -525,7 +546,9 @@ function nope ( isReady ) {
     var name = getName(),
         a, b, c;
 
-    if ( !isReady ) return;
+    if ( !isReady ) {
+        return;
+    }
 
     // ...
 }
@@ -536,7 +559,9 @@ function nope ( isReady ) {
 function yep ( isReady ) {
     var name, a, b, c;
 
-    if ( !isReady ) return;
+    if ( !isReady ) {
+        return;
+    }
 
     name = getName();
 
@@ -548,6 +573,7 @@ function yep ( isReady ) {
 ## Conditional Expressions & Equality ##
 
 Use `===` and `!==` over `==` and `!=`.
+
 > This helps to maintain data type integrity throughout your code and has a better performance.
 > For more information see [Truth Equality and JavaScript](http://javascriptweblog.wordpress.com/2011/02/07/truth-equality-and-javascript/#more-2108).
 
@@ -633,6 +659,7 @@ if ( something ) {
 ```
 
 `with ( someVar ) { ... }` should be avoided.
+
 > Using with clouds the semantics of your program. Because the object of the with can have properties that collide with local variables, it can drastically change the meaning of your program.
 
 
@@ -661,7 +688,9 @@ var active  = true,   // this var description
 For var/function/class declarations [JSDoc](http://usejsdoc.org/) should be used.
 
 Use `//FIXME:` to annotate problems.
+
 > Helps other developers quickly understand if you're pointing out a problem that needs to be revisited.
+
 ```js
 function build () {
     //FIXME: shouldn't use a global here
@@ -670,7 +699,9 @@ function build () {
 ```
 
 Use `//TODO:` to annotate solutions to problems.
+
 > Helps other developers to see if you're suggesting a solution to the problem that needs to be implemented.
+
 ```js
 function build () {
     //TODO: total should be configurable by an options param
@@ -858,6 +889,7 @@ try {
 ```
 
 Place an empty newline at the end of a file.
+
 > Each line should be terminated with a newline character, including the last one. Some programs have problems processing the last line of a file if it isn't newline terminated.
 
 Use line breaks and indentation when making long method chains.
@@ -932,6 +964,7 @@ var hero = {
 ```
 
 No Additional trailing comma.
+
 > This can cause problems with IE6/7 and IE9 if it's in quirksmode. Also, in some implementations of ES3 would add length to an array if it had an additional trailing comma. This was clarified in [ES5](http://es5.github.io/#D).
 
 ```js
@@ -966,6 +999,7 @@ var heroes = [
 ## Semicolons ##
 
 Semicolons use is mandatory.
+
 > Relying on [ASI](http://es5.github.io/#x7.9) (Automatic Semicolon Insertion) can cause subtle, hard to debug [problems](http://benalman.com/news/2013/01/advice-javascript-semicolon-haters/).
 
 ```js
@@ -1190,6 +1224,7 @@ function () {
 ```
 
 Name your functions.
+
 > This will produce better stack traces, heap and cpu profiles.
 
 ```js
@@ -1264,6 +1299,7 @@ if ( !dragon.hasAge() ) {
 ## Constructors ##
 
 Assign methods to the prototype object, instead of overwriting the prototype with a new object.
+
 > Overwriting the prototype makes inheritance impossible: by resetting the prototype you'll overwrite the base!
 
 ```js
@@ -1353,6 +1389,7 @@ Jedi.prototype.toString = function toString () {
 
 When attaching data to events it's always should be only one parameter.
 Pass a hash instead of a raw value in case there are more then one parameter.
+
 > This approach allows `EventEmitter` implementation with better performance.
 
 ```js
@@ -1390,6 +1427,7 @@ button.on('click', function ( data ) {
 `Element.nodeType` must be used to determine the classification of a node (not `Element.nodeName`).
 
 **Iterating over Node Lists.**
+
 > Node lists are often implemented as node iterators with a filter. This means that getting a property like length is O(n), and iterating over the list by re-checking the length will be O(n^2).
 
 ```js
@@ -1440,6 +1478,7 @@ Use [CommonJS](http://wiki.commonjs.org/wiki/Modules) modules.
 [Browserify](http://browserify.org/), [Webpack](http://webpack.github.io/) or similar are advised to bundle modules for web browsers.
 
 `eval()` is only for code loaders and in general should be avoided.
+
 > It makes for confusing semantics and is dangerous to use if the string being eval()'d contains user input. There's usually a better, clearer, and safer way to write your code, so its use is generally not permitted.
 
 
@@ -1453,9 +1492,11 @@ The options for JSHint are stored in the [.eslintrc.json](https://github.com/Dar
 ## Commits ##
 
 Every commit message, pull request title or issue discussion must be in English.
+
 > English is the universal language nowadays, if you use any other language you're excluding potencial contributors.
 
 Don't use Past or Present Continuous tenses for commit messages, those should be in Imperative Present tense.
+
 > This preference comes from [Git itself](http://git.kernel.org/cgit/git/git.git/tree/Documentation/SubmittingPatches?id=HEAD#n111).
 
 ```js

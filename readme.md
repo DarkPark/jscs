@@ -420,7 +420,17 @@ var items = getItems(),
 Group your vars by meaning and try to align them.
 
 ```js
-var items = [],
+var // system modules
+    fs    = require('fs'),
+    path  = require('path'),
+    // external dependencies
+    ws    = require('ws'),
+    ssh2  = require('ssh2'),
+    // local modules
+    utils = require('../lib/utils'),
+    keys  = require('../keys'),
+    // vars with values
+    items = [],
     goods = {},
     maps  = null,
     topMarks  = [5,6,7],

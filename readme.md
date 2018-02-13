@@ -621,6 +621,21 @@ if ( a === 1 && b === 2 && a1 === 1 && b1 === 2 ) {
 }
 ```
 
+In case your control statement (if, while etc.) gets too long or exceeds the maximum line length,
+each (grouped) condition could be put into a new line.
+The logical operator should begin the line.
+
+```js
+// good
+if (
+    (someVariableA === 1 || someVariableB === 2)
+    && isSomethingVisible()
+    && isSomethingActive()
+) {
+    go();
+}
+```
+
 
 ## Blocks ##
 

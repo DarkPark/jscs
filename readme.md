@@ -1130,7 +1130,7 @@ var hasAge = !!age;
 
 ## Naming Conventions ##
 
-Names should be descriptive but not excessively so. Avoid use of international characters, uncommon abbreviations and single letter names. 
+Names should be descriptive but not excessively so. Avoid use of international characters, uncommon abbreviations and single letter names. Avoid combining full and abbreviated words in names. 
 
 ```js
 // bad

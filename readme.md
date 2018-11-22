@@ -1130,8 +1130,7 @@ var hasAge = !!age;
 
 ## Naming Conventions ##
 
-Avoid single letter names. Be descriptive with your naming.
-The only exception is well-known index variables `i`, `j` and similar.
+Names should be descriptive but not excessively so. Avoid use of international characters, uncommon abbreviations and single letter names. Avoid combining full and abbreviated words in names. 
 
 ```js
 // bad
@@ -1166,9 +1165,9 @@ var thisIsMyObject = {},
         name: 'Bob Parr'
     });
 
-function thisIsMyFunction() {
+function thisIsMyFunction () {
     // ...
-};
+}
 ```
 
 Use PascalCase when naming constructors or classes.
@@ -1219,7 +1218,7 @@ When saving a reference to `this` use `self` or a corresponding meaningful name.
 
 ```js
 // bad
-function () {
+function foo () {
     var that = this;
 
     return function () {
@@ -1230,7 +1229,7 @@ function () {
 
 ```js
 // good
-function () {
+function foo () {
     var self = this;
 
     return function () {
@@ -1239,7 +1238,7 @@ function () {
 }
 
 // also good
-function () {
+function foo () {
     var parentFunc = this;
 
     return function () {
@@ -1250,7 +1249,7 @@ function () {
 
 Name your functions.
 
-> This will produce better stack traces, heap and cpu profiles.
+> This will produce better stack traces, heap and CPU profiles.
 
 ```js
 // bad
@@ -1272,7 +1271,7 @@ Use leading `$` to indicate that a DOM element is assigned to this variable.
 this.$body = document.querySelector('div.page');
 ```
 
-Use dot as a separator for filenames. Only lowercase allowed in order to avoid confusion on case-sensitive platforms. Filenames should contain no punctuation.
+Use dot as a separator for file names. Only lowercase allowed in order to avoid confusion on case-sensitive platforms. File names should contain no punctuation.
 
 ```js
 // bad

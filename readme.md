@@ -655,9 +655,6 @@ if ( isReady ) return true;
 if ( isReady ) {
     return true;
 }
-
-// good
-if ( isReady ) { return true; }
 ```
 
 Because of implicit semicolon insertion, always start your curly braces on the same line as whatever they're opening.

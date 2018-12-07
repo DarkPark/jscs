@@ -90,9 +90,9 @@ var superman = {
 
 ```js
 // only for objects (not arrays)
-for ( var key in obj ) {
-    if ( obj.hasOwnProperty(key) ) {
-        console.log(obj[key]);
+for ( var key in someObject ) {
+    if ( someObject.hasOwnProperty(key) ) {
+        console.log(someObject[key]);
     }
 }
 ```
@@ -146,16 +146,16 @@ Use simple iteration for big data. `forEach` approach looks better but good only
 
 ```js
 // good for large arrays
-var l = arr.length,
-    i;
+var length = someArray.length,
+    index;
 
-for ( i = 0; i < l; i++ ) {
-    console.log(arr[i]);
+for ( index = 0; index < length; index++ ) {
+    console.log(someArray[index]);
 }
 
 // good for small arrays
-arr.forEach(function ( item ) {
-    console.log(arr[i]);
+someArray.forEach(function ( item ) {
+    console.log(item);
 });
 ```
 
@@ -164,10 +164,10 @@ There is also an alternative way to iterate arrays.
 > It's more compact and has [about the same speed](http://jsperf.com/for-until-length-vs-until-undefined/9) as simple `forEach`.
 
 ```js
-var i = arr.length;
+var length = someArray.length;
 
-while ( i-- ) {
-    console.log(arr[i]);
+while ( length-- ) {
+    console.log(someArray[length]);
 }
 ```
 
@@ -213,19 +213,23 @@ When programatically building up complicated strings, use [Array.join](https://d
 
 ```js
 // good
-var i, str = '';
+var someText = '',
+    index;
 
-for ( i = 30000; i > 0; i-- ) {
-    str += 'String concatenation. ';
+for ( index = 30000; index > 0; index-- ) {
+    someText += 'String concatenation. ';
 }
 
 // also good
-var i, str = '', sArr = [];
+var someText  = '',
+    someArray = [],
+    index;
 
-for ( i = 30000; i > 0; i-- ) {
-    sArr.push('String concatenation.');
+for ( index = 30000; index > 0; index-- ) {
+    someArray.push('String concatenation.');
 }
-str = sArr.join(' ');
+
+someText = someArray.join(' ');
 ```
 
 
@@ -349,7 +353,7 @@ var name = 'pear',
 
 Delete properties with assigning to `null`.
 
-> In modern JavaScript engines, changing the number of properties on an object is much slower than reassigning the values. The delete keyword should be avoided except when it is necessary to remove a property from an object's iterated list of keys, or to change the result of `if ( key in obj )`.
+> In modern JavaScript engines, changing the number of properties on an object is much slower than reassigning the values. The delete keyword should be avoided except when it is necessary to remove a property from an object's iterated list of keys, or to change the result of `if ( key in someObject )`.
 
 ```js
 // think twice
@@ -414,7 +418,7 @@ var i, len,
 // good
 var items = getItems(),
     goSportsTeam = true,
-    dragonball, length, i;
+    dragonball, length, index;
 ```
 
 Group your vars by meaning and try to align them.
@@ -439,7 +443,9 @@ var // system modules
     // all best categories
     bestBooks, bestFilms, bestSongs,
     // everything about customer
-    customerTickets, customerLogin, customerLinks;
+    customerTickets, customerLogin, customerLinks,
+    // DOM nodes
+    $panel, $button;
 ```
 
 Assign variables at the top of their scope.
@@ -529,6 +535,7 @@ function hasName () {
     var name = getName();
 
     name = name.trim();
+    
     return name !== '';
 }
 ```
@@ -567,7 +574,7 @@ function nope ( isReady ) {
 ```js
 // good
 function yep ( isReady ) {
-    var name, a, b, c;
+    var name, title, info, data;
 
     if ( !isReady ) {
         return;
@@ -801,12 +808,12 @@ Any `:` after a property name in an object definition must not have preceding sp
 
 ```js
 // bad
-var obj = {a : 1, b : 2, c : 3};
+var someObject = {a : 1, b : 2, c : 3};
 ```
 
 ```js
 // good
-var obj = {a: 1, b: 2, c: 3};
+var someObject = {a: 1, b: 2, c: 3};
 ```
 
 The `?` and `:` in a ternary conditional must have space on both sides.
@@ -934,8 +941,8 @@ $('#items')
 Single-line array and object initializers are allowed when they fit on a line.
 
 ```js
-var arr = [1, 2, 3];           // No space after [ or before ].
-var obj = {a: 1, b: 2, c: 3};  // No space after { or before }.
+var someArray  = [1, 2, 3];           // No space after [ or before ].
+var someObject = {a: 1, b: 2, c: 3};  // No space after { or before }.
 ```
 
 Use newlines to group logically related pieces of code.
@@ -1044,6 +1051,7 @@ test();
 // good
 (function() {
     var name = 'Skywalker';
+    
     return name;
 })();
 ```
@@ -1087,24 +1095,24 @@ Use `parseInt` for Numbers and always with a radix for type casting.
 var inputValue = '4';
 
 // bad
-var val = new Number(inputValue);
+var value = new Number(inputValue);
 
 // bad
-var val = +inputValue;
+var value = +inputValue;
 
 // bad
-var val = inputValue >> 0;
+var value = inputValue >> 0;
 
 // bad
-var val = parseInt(inputValue);
+var value = parseInt(inputValue);
 ```
 
 ```js
 // good
-var val = Number(inputValue);
+var value = Number(inputValue);
 
 // good
-var val = parseInt(inputValue, 10);
+var value = parseInt(inputValue, 10);
 ```
 
 Booleans.
@@ -1131,6 +1139,8 @@ Names should be descriptive but not excessively so. Avoid use of international c
 
 ```js
 // bad
+var arrLen = 0;
+
 function q () {
     // ...
 }
@@ -1138,6 +1148,8 @@ function q () {
 
 ```js
 // good
+var arrayLength = 0;
+
 function query () {
     // ...
 }
@@ -1262,10 +1274,26 @@ getData(function getDataCallback ( data ) {
 });
 ```
 
-Use leading `$` to indicate that a DOM element is assigned to this variable.
+Use leading `$` to indicate that a DOM element is assigned to variable or property.
 
 ```js
-this.$body = document.querySelector('div.page');
+// bad
+var body = document.querySelector('div.page');
+
+this.$shadow = {
+    left: document.createElement('div'),
+    right: document.createElement('div')
+};
+```
+
+```js
+// good
+var $body = document.querySelector('div.page');
+
+this.shadows = {
+    $left: document.createElement('div'),
+    $right: document.createElement('div')
+};
 ```
 
 Use dot as a separator for file names. Only lowercase allowed in order to avoid confusion on case-sensitive platforms. File names should contain no punctuation.
@@ -1454,10 +1482,10 @@ button.on('click', function ( data ) {
 ```js
 // not this good
 var paragraphs = document.getElementsByTagName('p'),
-    i;
+    index;
 
-for ( i = 0; i < paragraphs.length; i++ ) {
-    doSomething(paragraphs[i]);
+for ( index = 0; index < paragraphs.length; index++ ) {
+    doSomething(paragraphs[index]);
 }
 ```
 
@@ -1466,18 +1494,18 @@ This works well for all collections and arrays as long as the array does not con
 ```js
 // good
 var paragraphs = document.getElementsByTagName('p'),
-    i;
+    index;
 
-for ( i = 0, paragraph; paragraph = paragraphs[i]; i++ ) {
+for ( index = 0, paragraph; paragraph = paragraphs[index]; index++ ) {
     doSomething(paragraph);
 }
 
 // also good
 var paragraphs = document.getElementsByTagName('p'),
-    i, l;
+    index, length;
 
-for ( i = 0, l = paragraphs.length; i < l; i++ ) {
-    doSomething(paragraphs[i]);
+for ( index = 0, length = paragraphs.length; index < length; index++ ) {
+    doSomething(paragraphs[index]);
 }
 ```
 

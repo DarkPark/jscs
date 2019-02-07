@@ -1274,7 +1274,7 @@ getData(function getDataCallback ( data ) {
 });
 ```
 
-Use leading `$` to indicate that a DOM element is assigned to variable or property.
+Use leading `$` to indicate that a DOM node is assigned to variable or property.
 
 ```js
 // bad
@@ -1288,7 +1288,8 @@ this.$shadow = {
 
 ```js
 // good
-var $body = document.querySelector('div.page');
+var $body = document.querySelector('div.page'),
+    $text = document.createTextNode('something awesome');
 
 this.shadows = {
     $left: document.createElement('div'),
